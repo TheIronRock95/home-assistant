@@ -11,7 +11,7 @@ homeassistant:
   country: NL
   time_zone: Europe/Amsterdam
   external_url: !secret external_url
-  internal_url: !secret internal_url
+
 
 # Reverse proxy ondersteuning via Kubernetes Gateway (Cilium)
 http:
