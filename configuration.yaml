@@ -8,7 +8,6 @@ homeassistant:
   longitude: !secret longitude
   unit_system: metric
   currency: EUR
-  country: NL
   time_zone: Europe/Amsterdam
   external_url: !secret external_url
 

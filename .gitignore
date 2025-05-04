@@ -15,6 +15,11 @@ secrets.yaml
 custom_components/__pycache__/
 __pycache__/
 *.pyc
+.storage/
+.cloud/
+.vscode/
+blueprints/
+
 
 # Backup en snapshot bestanden
 backup/
