@@ -18,7 +18,6 @@ __pycache__/
 .storage/
 .cloud/
 .vscode/
-blueprints/
 
 
 # Backup en snapshot bestanden

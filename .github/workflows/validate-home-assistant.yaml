@@ -1,0 +1,24 @@
+name: Validate Home Assistant Config
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: Check configuration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Validate configuration
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/config \
+            ghcr.io/home-assistant/home-assistant:stable \
+            python -m homeassistant --config /config --script check_config
