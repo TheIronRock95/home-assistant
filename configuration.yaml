@@ -1,23 +1,60 @@
+# Default core integrations and settings
 default_config:
 
+# Recorder integration settings for database logging and retention
+recorder:
+  # Database connection URL, fetched from the environment variable MYSQL_URL
+  db_url: !env MYSQL_URL
+  # Automatically purge old data to prevent the database from growing too large
+  auto_purge: true
+  # Keep a maximum of 180 days of data (approximately 6 months)
+  purge_keep_days: 180
+  # How often (in seconds) changes are committed to the database
+  # Lower value means more frequent writes, which can increase IO load
+  commit_interval: 5
+  # Maximum number of times the recorder will retry connecting to the database on failure
+  db_max_retries: 10
+  # Seconds to wait between retry attempts
+  db_retry_wait: 3
+  # Entities and integrations to exclude from recording to keep the database smaller
+  exclude:
+    # Exclude entire integrations, e.g., updater and zwave_js
+    domains: []
+    # Exclude specific sensors you don’t want to store
+    entities: []
+
+# General Home Assistant core configuration
 homeassistant:
+  # Name of your Home Assistant instance
   name: Home
+  # Latitude of your location, stored securely in secrets.yaml
   latitude: !secret latitude
+  # Longitude of your location, stored securely in secrets.yaml
   longitude: !secret longitude
+  # Use metric units (Celsius, meters, etc.)
   unit_system: metric
+  # Currency used for integrations that require it
   currency: EUR
+  # Time zone for your location
   time_zone: Europe/Amsterdam
+  # External URL for remote access, stored securely in secrets.yaml
   external_url: !secret external_url
 
+# HTTP server settings for trusted proxies and security
 http:
+  # Use the X-Forwarded-For header (important if behind reverse proxy)
   use_x_forwarded_for: true
+  # List of trusted proxy IP ranges
   trusted_proxies:
-  - 10.0.0.0/8
-  - 127.0.0.1
-  - ::1
+    - 10.0.0.0/8
+    - 127.0.0.1
+    - ::1
+  # Enable IP banning after too many failed login attempts
   ip_ban_enabled: true
+  # Number of allowed failed login attempts before banning
   login_attempts_threshold: 5
 
+# Include your automation, script, scene, and template files from directories
 automation: !include_dir_merge_list automations/
 script: !include_dir_merge_named scripts/
 scene: !include_dir_merge_list scenes/
