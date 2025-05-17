@@ -4,7 +4,7 @@ default_config:
 # Recorder integration settings for database logging and retention
 recorder:
   # Database connection URL, fetched from the environment variable MYSQL_URL
-  db_url: !env MYSQL_URL
+  db_url: !secret db_url
   # Automatically purge old data to prevent the database from growing too large
   auto_purge: true
   # Keep a maximum of 180 days of data (approximately 6 months)
