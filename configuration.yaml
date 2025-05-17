@@ -1,6 +1,12 @@
 # Default core integrations and settings
 default_config:
 
+
+# theme settings for the frontend
+frontend:
+  # load custom themes from the themes directory
+  themes: !include_dir_merge_named themes
+
 # Recorder integration settings for database logging and retention
 recorder:
   # Database connection URL, fetched from the environment variable MYSQL_URL
@@ -59,3 +65,4 @@ automation: !include_dir_merge_list automations/
 script: !include_dir_merge_named scripts/
 scene: !include_dir_merge_list scenes/
 template: !include_dir_merge_list templates/
+lovelace: !include lovelace_config.yaml
