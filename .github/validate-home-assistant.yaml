@@ -10,13 +10,17 @@ on:
 
 jobs:
   validate:
-    name: Check configuration
+    name: Validate configuration
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Validate configuration
+      - name: Use test secrets
+        run: cp .github/test-secrets.yaml secrets.yaml
+
+      - name: Validate Home Assistant configuration
         run: |
           docker run --rm \
             -v ${{ github.workspace }}:/config \
