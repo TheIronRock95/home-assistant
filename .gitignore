@@ -18,7 +18,8 @@ __pycache__/
 .storage/
 .cloud/
 .vscode/
-
+custom_components/
+www/community/
 
 # Backup en snapshot bestanden
 backup/
