@@ -1,0 +1,74 @@
+- id: ikea_remote_livingroom
+  alias: IKEA remote - Control living room lights with cycling colors
+  mode: single
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/woonkamer_afstandsbediening/action
+  condition: []
+  action:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: "{{ trigger.payload == 'toggle' }}"
+          sequence:
+            - service: light.toggle
+              target:
+                entity_id:
+                  - light.woonkamer_kast_tv
+                  - light.woonkamer_kast_bank
+        - conditions:
+            - condition: template
+              value_template: >
+                {{ trigger.payload in ['arrow_left_click', 'arrow_right_click'] }}
+          sequence:
+            - variables:
+                current: "{{ states('input_select.woonkamer_color_temp') }}"
+                colors: ['warmest', 'warm', 'neutral', 'cool']
+                index: "{{ colors.index(current) }}"
+                direction: "{{ 1 if trigger.payload == 'arrow_right_click' else -1 }}"
+                new_index: >
+                  {% set i = (index + direction) % colors|length %}
+                  {{ i }}
+                new_color: "{{ colors[new_index] }}"
+                kelvin_map:
+                  warmest: 2202
+                  warm: 2801
+                  neutral: 3401
+                  cool: 4000
+            - service: input_select.select_option
+              target:
+                entity_id: input_select.woonkamer_color_temp
+              data:
+                option: "{{ new_color }}"
+            - service: light.turn_on
+              data:
+                color_temp_kelvin: "{{ kelvin_map[new_color] }}"
+              target:
+                entity_id:
+                  - light.woonkamer_kast_tv
+                  - light.woonkamer_kast_bank
+        - conditions:
+            - condition: template
+              value_template: "{{ trigger.payload == 'brightness_up_click' }}"
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness_step: 25
+                transition: 1
+              target:
+                entity_id:
+                  - light.woonkamer_kast_tv
+                  - light.woonkamer_kast_bank
+        - conditions:
+            - condition: template
+              value_template: "{{ trigger.payload == 'brightness_down_click' }}"
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness_step: -25
+                transition: 1
+              target:
+                entity_id:
+                  - light.woonkamer_kast_tv
+                  - light.woonkamer_kast_bank
+

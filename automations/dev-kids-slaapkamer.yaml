@@ -1,0 +1,112 @@
+- id: dev_kids_slaapkamer_zon
+  alias: Werkkamer testlamp - Aan/uit op zonlicht met tijdsfilter
+  id: werkkamer_testlamp_zonlicht_tijdsfilter
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-01:00"
+      id: zon_gaat_binnen_uur_onder
+    - platform: sun
+      event: sunrise
+      offset: "00:30"
+      id: zon_op_30min
+    - platform: time
+      at: "22:00:00"
+      id: test_trigger_22uur
+  condition:
+    - condition: time
+      after: "05:30:00"
+      before: "23:00:00"
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: zon_gaat_binnen_uur_onder
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.werkkamer_serverkast_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Werkkamerlamp aangezet (zon gaat bijna onder)"
+        - conditions:
+            - condition: trigger
+              id: zon_op_30min
+          sequence:
+            - service: light.turn_off
+              target:
+                entity_id: light.werkkamer_serverkast_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Werkkamerlamp uitgezet (zon is op)"
+        - conditions:
+            - condition: trigger
+              id: test_trigger_22uur
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.werkkamer_serverkast_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Werkkamerlamp aangezet (test trigger 22:00)"
+  mode: single
+- id: dev_kids_slaapkamer_uitschakelen
+  alias: Dev - Nachtlamp uitschakelen en hervatten
+  description: Zet de lamp uit om 23:00, zet weer aan om 05:30 indien de zon nog niet op is
+  trigger:
+    - platform: time
+      at: "23:00:00"
+      id: tijd_2300
+    - platform: time
+      at: "05:30:00"
+      id: tijd_0530
+  condition: []
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: tijd_2300
+          sequence:
+            - service: light.turn_off
+              target:
+                entity_id: light.werkkamer_serverkast_led
+        - conditions:
+            - condition: trigger
+              id: tijd_0530
+            - condition: sun
+              before: sunrise
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.werkkamer_serverkast_led
+  mode: single
+- id: dev_kids_slaapkamer_remote
+  alias: Dev - Nachtlamp via test remote
+  description: Zet de lamp tijdelijk aan bij knopdruk tussen 23:00 en 05:30 via test remote
+  trigger:
+    - platform: state
+      entity_id: remote.werkkamer_test_remote
+      to: 'on'
+  condition:
+    - condition: time
+      after: '23:00:00'
+      before: '05:30:00'
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: light.werkkamer_serverkast_led
+    - delay: "00:20:00"
+    - service: light.turn_on
+      target:
+        entity_id: light.werkkamer_serverkast_led
+      data:
+        brightness_pct: 100
+        transition: 600
+    - delay: "00:10:00"
+    - service: light.turn_off
+      target:
+        entity_id: light.werkkamer_serverkast_led
+  mode: restart

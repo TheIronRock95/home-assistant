@@ -1,0 +1,157 @@
+sensor.slaapkamer_rolgordijn_device_temperature:
+  excluded: true
+  hidden: true
+sensor.slaapkamer_rolgordijn_battery:
+  grouped_sort_order: 3
+sensor.slaapkamer_klimaat_temperature:
+  grouped_sort_order: 1
+sensor.slaapkamer_rolgordijn_motor_state:
+  grouped_sort_order: 5
+  hidden: true
+sensor.slaapkamer_klimaat_battery:
+  grouped_sort_order: 4
+sensor.slaapkamer_klimaat_humidity:
+  grouped_sort_order: 2
+button.woonkamer_afstandsbediening_identify:
+  hidden: true
+button.woonkamer_kast_bank_identify:
+  hidden: true
+button.woonkamer_kast_tv_identify:
+  hidden: true
+select.woonkamer_kast_bank_power_on_behavior:
+  hidden: true
+select.woonkamer_kast_tv_power_on_behavior:
+  hidden: true
+sensor.woonkamer_kast_bank_color_options:
+  hidden: true
+sensor.woonkamer_kast_tv_color_options:
+  hidden: true
+update.woonkamer_afstandsbediening:
+  hidden: true
+update.woonkamer_kast_bank:
+  hidden: true
+update.woonkamer_kast_tv:
+  hidden: true
+switch.laadpaal_display_light_auto_dim:
+  excluded: true
+switch.laadpaal_solar_charging_boost:
+  excluded: true
+select.keuken_spot_links_effect:
+  hidden: true
+select.keuken_spot_rechts_effect:
+  hidden: true
+select.keuken_spot_midden_effect:
+  hidden: true
+select.slaapkamer_rolgordijn_motor_speed:
+  hidden: true
+water_heater.e3_vitodens_100_vct_0122_domestic_hot_water:
+  hidden: true
+sensor.e3_vitodens_100_vct_0122_burner_hours:
+  hidden: true
+sensor.e3_vitodens_100_vct_0122_burner_starts:
+  hidden: true
+sensor.e3_vitodens_100_vct_0122_dhw_electricity_consumption_today:
+  hidden: true
+sensor.e3_vitodens_100_vct_0122_heating_gas_consumption_today:
+  hidden: true
+sensor.e3_vitodens_100_vct_0122_dhw_gas_consumption_today:
+  hidden: true
+sensor.e3_vitodens_100_vct_0122_heating_electricity_consumption_today:
+  hidden: true
+binary_sensor.e3_vitodens_100_vct_0122_frost_protection:
+  hidden: true
+binary_sensor.e3_vitodens_100_vct_0122_burner:
+  hidden: true
+binary_sensor.nest_protect_gang_battery_health:
+  hidden: true
+binary_sensor.nest_protect_gang_co_status:
+  hidden: true
+binary_sensor.nest_protect_gang_heat_status:
+  hidden: true
+binary_sensor.nest_protect_gang_line_power:
+  hidden: true
+binary_sensor.nest_protect_gang_removed_from_base:
+  hidden: true
+binary_sensor.nest_protect_gang_smoke_status:
+  hidden: true
+sensor.nest_protect_gang_battery_level:
+  hidden: true
+sensor.nest_protect_gang_replace_by:
+  hidden: true
+switch.nest_protect_gang_heads_up:
+  hidden: true
+  excluded: true
+switch.nest_protect_gang_pathlight:
+  hidden: true
+  excluded: true
+switch.nest_protect_gang_nightly_promise:
+  hidden: true
+  excluded: true
+select.nest_protect_gang_brightness:
+  hidden: true
+binary_sensor.nest_protect_overloop_battery_health:
+  hidden: true
+binary_sensor.nest_protect_overloop_co_status:
+  hidden: true
+binary_sensor.nest_protect_overloop_heat_status:
+  hidden: true
+binary_sensor.nest_protect_overloop_line_power:
+  hidden: true
+binary_sensor.nest_protect_overloop_removed_from_base:
+  hidden: true
+binary_sensor.nest_protect_overloop_smoke_status:
+  hidden: true
+sensor.nest_protect_overloop_battery_level:
+  hidden: true
+sensor.nest_protect_overloop_replace_by:
+  hidden: true
+select.nest_protect_overloop_brightness:
+  hidden: true
+switch.nest_protect_overloop_heads_up:
+  hidden: true
+  excluded: true
+switch.nest_protect_overloop_pathlight:
+  hidden: true
+  excluded: true
+switch.nest_protect_overloop_nightly_promise:
+  hidden: true
+  excluded: true
+binary_sensor.nest_protect_zolder_battery_health:
+  hidden: true
+binary_sensor.nest_protect_zolder_co_status:
+  hidden: true
+binary_sensor.nest_protect_zolder_heat_status:
+  hidden: true
+binary_sensor.nest_protect_zolder_line_power:
+  hidden: true
+binary_sensor.nest_protect_zolder_removed_from_base:
+  hidden: true
+binary_sensor.nest_protect_zolder_smoke_status:
+  hidden: true
+select.nest_protect_zolder_brightness:
+  hidden: true
+sensor.nest_protect_zolder_battery_level:
+  hidden: true
+sensor.nest_protect_zolder_replace_by:
+  hidden: true
+switch.nest_protect_zolder_heads_up:
+  hidden: true
+  excluded: true
+switch.nest_protect_zolder_pathlight:
+  hidden: true
+  excluded: true
+switch.nest_protect_zolder_nightly_promise:
+  hidden: true
+  excluded: true
+select.washing_machine_active_program:
+  grouped_sort_order: 1
+select.washing_machine_selected_program:
+  grouped_sort_order: 2
+select.dryer_active_program:
+  grouped_sort_order: 3
+select.dryer_selected_program:
+  grouped_sort_order: 4
+select.washing_machine_temperature:
+  grouped_sort_order: 5
+select.washing_machine_spin_speed:
+  grouped_sort_order: 6

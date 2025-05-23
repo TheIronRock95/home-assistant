@@ -1,0 +1,8 @@
+woonkamer_color_temp:
+  name: Woonkamer Color Temp
+  options:
+    - warmest
+    - warm
+    - neutral
+    - cool
+  initial: warm

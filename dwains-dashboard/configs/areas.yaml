@@ -1,0 +1,96 @@
+woonkamer:
+  icon: mdi:sofa
+  floor: 0 - Begane Grond
+  disabled: false
+bijkeuken:
+  icon: mdi:washing-machine
+  floor: 0 - Begane Grond
+  disabled: false
+garage:
+  icon: mdi:garage
+  floor: 0 - Begane Grond
+  disabled: false
+eetkamer:
+  icon: mdi:table-furniture
+  floor: 0 - Begane Grond
+  disabled: false
+keuken:
+  icon: mdi:countertop
+  floor: 0 - Begane Grond
+  disabled: false
+gang:
+  icon: mdi:coat-rack
+  floor: 0 - Begane Grond
+  disabled: false
+wc:
+  icon: mdi:toilet
+  floor: 0 - Begane Grond
+  disabled: false
+meterkast:
+  icon: mdi:transmission-tower
+  floor: 0 - Begane Grond
+  disabled: false
+slaapkamer:
+  icon: mdi:bed-double
+  floor: 1 - Eerste verdieping
+  disabled: false
+werkkamer:
+  icon: mdi:briefcase
+  floor: 1 - Eerste verdieping
+  disabled: false
+slaapkamer_quinn:
+  icon: mdi:baby
+  floor: 1 - Eerste verdieping
+  disabled: false
+badkamer:
+  icon: mdi:shower-head
+  floor: 1 - Eerste verdieping
+  disabled: false
+slaapkamer_lize:
+  icon: mdi:unicorn-variant
+  floor: 2 - Zolder
+  disabled: false
+slaapkamer_stan:
+  icon: mdi:paw
+  floor: 2 - Zolder
+  disabled: false
+technische_ruimte:
+  icon: mdi:solar-power-variant
+  floor: 2 - Zolder
+  disabled: false
+chill_hoek:
+  icon: mdi:sleep
+  floor: 2 - Zolder
+  disabled: false
+oprit:
+  icon: mdi:car
+  floor: 0 - Buiten
+  disabled: false
+voortuin:
+  icon: mdi:shovel
+  floor: 0 - Buiten
+  disabled: false
+terras:
+  icon: mdi:sunglasses
+  floor: 0 - Buiten
+  disabled: false
+tuinhuisje:
+  icon: mdi:greenhouse
+  floor: 0 - Buiten
+  disabled: false
+achtertuin:
+  icon: mdi:shovel
+  floor: 0 - Buiten
+  disabled: false
+zolder:
+  icon: ''
+  floor: 2 - Zolder
+  disabled: false
+overloop:
+  icon: mdi:walk
+  floor: 1 - Eerste verdieping
+  disabled: false
+overige_locatie:
+  icon: mdi:code-brackets
+  floor: ''
+  disabled: false
