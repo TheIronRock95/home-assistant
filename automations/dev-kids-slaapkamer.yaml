@@ -1,112 +1,166 @@
-- id: dev_kids_slaapkamer_zon
-  alias: Werkkamer testlamp - Aan/uit op zonlicht met tijdsfilter
-  id: werkkamer_testlamp_zonlicht_tijdsfilter
+- id: dev_kids_slaapkamer_avond
+  alias: Dev - Nachtlamp schakelen bij zonsondergang en vaste uitschakeltijd
+  description: Zet de lamp aan bij zonsondergang - 45 min, maar in winter minimaal om 16:30. Uit om 22:00
   trigger:
     - platform: sun
       event: sunset
-      offset: "-01:00"
-      id: zon_gaat_binnen_uur_onder
-    - platform: sun
-      event: sunrise
-      offset: "00:30"
-      id: zon_op_30min
+      offset: "-00:45:00"
+      id: bijna_zon_onder
+    - platform: time
+      at: "16:30:00"
+      id: winter_minimum
     - platform: time
       at: "22:00:00"
-      id: test_trigger_22uur
-  condition:
-    - condition: time
-      after: "05:30:00"
-      before: "23:00:00"
-  action:
-    - choose:
-        - conditions:
-            - condition: trigger
-              id: zon_gaat_binnen_uur_onder
-          sequence:
-            - service: light.turn_on
-              target:
-                entity_id: light.werkkamer_serverkast_led
-            - service: logbook.log
-              data:
-                name: "Automation"
-                message: "Werkkamerlamp aangezet (zon gaat bijna onder)"
-        - conditions:
-            - condition: trigger
-              id: zon_op_30min
-          sequence:
-            - service: light.turn_off
-              target:
-                entity_id: light.werkkamer_serverkast_led
-            - service: logbook.log
-              data:
-                name: "Automation"
-                message: "Werkkamerlamp uitgezet (zon is op)"
-        - conditions:
-            - condition: trigger
-              id: test_trigger_22uur
-          sequence:
-            - service: light.turn_on
-              target:
-                entity_id: light.werkkamer_serverkast_led
-            - service: logbook.log
-              data:
-                name: "Automation"
-                message: "Werkkamerlamp aangezet (test trigger 22:00)"
-  mode: single
-- id: dev_kids_slaapkamer_uitschakelen
-  alias: Dev - Nachtlamp uitschakelen en hervatten
-  description: Zet de lamp uit om 23:00, zet weer aan om 05:30 indien de zon nog niet op is
-  trigger:
-    - platform: time
-      at: "23:00:00"
-      id: tijd_2300
-    - platform: time
-      at: "05:30:00"
-      id: tijd_0530
+      id: tijd_2200
   condition: []
   action:
     - choose:
         - conditions:
             - condition: trigger
-              id: tijd_2300
-          sequence:
-            - service: light.turn_off
-              target:
-                entity_id: light.werkkamer_serverkast_led
-        - conditions:
-            - condition: trigger
-              id: tijd_0530
-            - condition: sun
-              before: sunrise
+              id: bijna_zon_onder
+            - condition: template
+              value_template: >
+                {% set month = now().month %}
+                {% set is_winter = month in [12,1,2,3] %}
+                {% if is_winter %}
+                  false
+                {% else %}
+                  true
+                {% endif %}
           sequence:
             - service: light.turn_on
               target:
                 entity_id: light.werkkamer_serverkast_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Lamp aan: zon gaat bijna onder (lente/zomer/herfst)"
+        - conditions:
+            - condition: trigger
+              id: winter_minimum
+            - condition: template
+              value_template: >
+                {% set month = now().month %}
+                {% set is_winter = month in [12,1,2,3] %}
+                {% if is_winter %}
+                  true
+                {% else %}
+                  false
+                {% endif %}
+            - condition: sun
+              after: sunset
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.werkkamer_serverkast_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Lamp aan: winter minimum tijd 16:30"
+        - conditions:
+            - condition: trigger
+              id: tijd_2200
+          sequence:
+            - service: light.turn_off
+              target:
+                entity_id: light.werkkamer_serverkast_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Lamp uit: het is 22:00"
+  mode: single
+- id: dev_kids_slaapkamer_ochtend
+  alias: Dev - Nachtlamp automatisch schakelen rond zonsopkomst
+  description: Zet de lamp aan om 05:00 als het donker is, uit 1 uur na zonsopkomst of uiterlijk om 08:45
+  trigger:
+    - platform: time
+      at: "05:00:00"
+      id: tijd_0500
+    - platform: sun
+      event: sunrise
+      offset: "01:00:00"
+      id: zon_op_plus_1u
+    - platform: time
+      at: "08:45:00"
+      id: tijd_0845
+  condition: []
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: tijd_0500
+            - condition: numeric_state
+              entity_id: sun.sun
+              attribute: elevation
+              below: 3
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.werkkamer_serverkast_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Lamp aan: donker om 05:00"
+        - conditions:
+            - condition: trigger
+              id: zon_op_plus_1u
+          sequence:
+            - service: light.turn_off
+              target:
+                entity_id: light.werkkamer_serverkast_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Lamp uit: zon al 1 uur op"
+        - conditions:
+            - condition: trigger
+              id: tijd_0845
+          sequence:
+            - service: light.turn_off
+              target:
+                entity_id: light.werkkamer_serverkast_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Lamp uit: backstop 08:45"
   mode: single
 - id: dev_kids_slaapkamer_remote
-  alias: Dev - Nachtlamp via test remote
-  description: Zet de lamp tijdelijk aan bij knopdruk tussen 23:00 en 05:30 via test remote
+  alias: Dev - Nachtlamp via test remote (dag en nacht)
+  description: Zet de lamp tijdelijk aan via test remote, 30 min 's nachts, 1 uur overdag, reset remote state
   trigger:
-    - platform: state
-      entity_id: remote.werkkamer_test_remote
-      to: 'on'
-  condition:
-    - condition: time
-      after: '23:00:00'
-      before: '05:30:00'
+    - platform: mqtt
+      topic: zigbee2mqtt/werkkamer_test_remote/action
+      payload: 'on'
   action:
-    - service: light.turn_on
-      target:
-        entity_id: light.werkkamer_serverkast_led
-    - delay: "00:20:00"
-    - service: light.turn_on
-      target:
-        entity_id: light.werkkamer_serverkast_led
-      data:
-        brightness_pct: 100
-        transition: 600
-    - delay: "00:10:00"
+    - choose:
+        - conditions:
+            - condition: or
+              conditions:
+                - condition: time
+                  after: '22:00:00'
+                - condition: time
+                  before: '05:30:00'
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.werkkamer_serverkast_led
+            - delay: "00:30:00"
+        - conditions:
+            - condition: time
+              after: '05:30:00'
+            - condition: time
+              before: '22:00:00'
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.werkkamer_serverkast_led
+            - delay: "01:00:00"
     - service: light.turn_off
       target:
         entity_id: light.werkkamer_serverkast_led
+    - service: mqtt.publish
+      data:
+        topic: zigbee2mqtt/werkkamer_test_remote/action
+        payload: 'off'
+        retain: false
   mode: restart

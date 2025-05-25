@@ -1,19 +1,36 @@
 #!/bin/bash
+set -e
 
-# Pad naar het bestand met de Home Assistant-versie
-HA_VERSION=$(cat /data/config/.HA_VERSION)
+SSH_DIR="/root/.ssh"
+REPO_DIR="/config"
+CONFIG_FILE="/config/scripts/git_backup_config.env"
 
-# Huidige datum en tijd
-COMMIT_DATE=$(date +'%d-%m-%Y %H:%M:%S')
+# Laad configuratie (email, naam, repo-url) uit extern bestand
+if [ -f "$CONFIG_FILE" ]; then
+  source "$CONFIG_FILE"
+else
+  echo "Config file $CONFIG_FILE niet gevonden!"
+  exit 1
+fi
 
-# Bericht opstellen
-COMMIT_MESSAGE="Autocommit from HA - [$HA_VERSION]: $COMMIT_DATE"
+# Kopieer de bestaande private key naar .ssh/id_rsa
+mkdir -p "$SSH_DIR"
+cp /config/scripts/id_rsa "$SSH_DIR/id_rsa"
+chmod 600 "$SSH_DIR/id_rsa"
 
-# Bericht tonen in terminal/log
-echo "$COMMIT_MESSAGE"
+# Voeg github.com toe aan known_hosts zodat ssh connectie werkt zonder prompt
+ssh-keyscan github.com >> "$SSH_DIR/known_hosts"
+chmod 644 "$SSH_DIR/known_hosts"
 
-# Git-commando's uitvoeren
-cd /data/config
+# Git configuratie
+git config --global user.email "$GIT_USER_EMAIL"
+git config --global user.name "$GIT_USER_NAME"
+
+cd "$REPO_DIR"
+
+# Voeg alles toe en commit
 git add .
-git commit -m "$COMMIT_MESSAGE"
-git push
+git commit -m "Automatische backup $(date '+%Y-%m-%d %H:%M:%S')"
+
+# Push met SSH
+GIT_SSH_COMMAND="ssh -i $SSH_DIR/id_rsa -o IdentitiesOnly=yes" git push "$GIT_REPO_URL" master

@@ -1,0 +1,12 @@
+- id: gitHub_backup
+  alias: HAConfig GitHub Backup - 2x per dag
+  description: "Back-up Home Assistant config naar GitHub om 00:00 en 12:00"
+  trigger:
+    - platform: time
+      at: "00:00:00"
+    - platform: time
+      at: "12:00:00"
+  action:
+    - service: shell_command.run_gitbackup
+      data: {}
+  mode: single
