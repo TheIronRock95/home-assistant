@@ -28,6 +28,8 @@ git config --global user.name "$GIT_USER_NAME"
 
 cd "$REPO_DIR"
 
+git config core.sshCommand "ssh -i /config/.ssh/id_rsa -F /dev/null"
+
 # Voeg alles toe en commit
 git add .
 git commit -m "Automatische backup $(date '+%Y-%m-%d %H:%M:%S')"
