@@ -36,4 +36,3 @@ git commit -m "Automatische backup $(date '+%Y-%m-%d %H:%M:%S')"
 
 # Push met SSH
 GIT_SSH_COMMAND="ssh -i $SSH_DIR/id_rsa -o IdentitiesOnly=yes" git push "$GIT_REPO_URL" main
-
