@@ -155,3 +155,35 @@ select.washing_machine_temperature:
   grouped_sort_order: 5
 select.washing_machine_spin_speed:
   grouped_sort_order: 6
+sensor.slaapkamer_lize_klimaat_temperature:
+  grouped_sort_order: 1
+sensor.slaapkamer_lize_klimaat_battery:
+  grouped_sort_order: 3
+sensor.slaapkamer_lize_klimaat_humidity:
+  grouped_sort_order: 2
+sensor.slaapkamer_lize_remote_battery:
+  grouped_sort_order: 4
+sensor.slaapkamer_stan_klimaat_temperature:
+  grouped_sort_order: 1
+sensor.slaapkamer_stan_klimaat_humidity:
+  grouped_sort_order: 2
+sensor.slaapkamer_stan_klimaat_battery:
+  grouped_sort_order: 3
+sensor.slaapkamer_stan_remote_battery:
+  grouped_sort_order: 4
+automation.ikea_remote_control_living_room_lights:
+  hidden: true
+automation.voorraadkast_verlichting_via_mqtt:
+  hidden: true
+automation.lize_nachtlamp_schakelen_bij_zonsondergang_en_vaste_uitschakeltijd:
+  hidden: true
+automation.lize_nachtlamp_automatisch_schakelen_rond_zonsopkomst:
+  hidden: true
+automation.lize_nachtlamp_via_afstandsbediening_dag_en_nacht:
+  hidden: true
+automation.stan_nachtlamp_schakelen_bij_zonsondergang_en_vaste_uitschakeltijd:
+  hidden: true
+automation.stan_nachtlamp_automatisch_schakelen_rond_zonsopkomst:
+  hidden: true
+automation.stan_nachtlamp_via_afstandsbediening_dag_en_nacht:
+  hidden: true

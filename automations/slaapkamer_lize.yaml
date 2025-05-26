@@ -118,35 +118,22 @@
 
 - id: lize_slaapkamer_remote
   alias: Lize - Nachtlamp via afstandsbediening (dag en nacht)
-  description: Zet de lamp tijdelijk aan via afstandsbediening, 30 min 's nachts, 1 uur overdag, reset remote state
+  description: Zet de lamp tijdelijk aan via afstandsbediening 30 min, behalve tussen 10:00 en 14:00, reset remote state
   trigger:
     - platform: mqtt
       topic: zigbee2mqtt/slaapkamer_lize_remote/action
       payload: 'on'
+  condition:
+    - condition: not
+      conditions:
+        - condition: time
+          after: '10:00:00'
+          before: '14:00:00'
   action:
-    - choose:
-        - conditions:
-            - condition: or
-              conditions:
-                - condition: time
-                  after: '22:00:00'
-                - condition: time
-                  before: '05:30:00'
-          sequence:
-            - service: light.turn_on
-              target:
-                entity_id: light.slaapkamer_lize_led
-            - delay: "00:30:00"
-        - conditions:
-            - condition: time
-              after: '05:30:00'
-            - condition: time
-              before: '22:00:00'
-          sequence:
-            - service: light.turn_on
-              target:
-                entity_id: light.slaapkamer_lize_led
-            - delay: "01:00:00"
+    - service: light.turn_on
+      target:
+        entity_id: light.slaapkamer_lize_led
+    - delay: "00:30:00"
     - service: light.turn_off
       target:
         entity_id: light.slaapkamer_lize_led
@@ -156,3 +143,4 @@
         payload: 'off'
         retain: false
   mode: restart
+

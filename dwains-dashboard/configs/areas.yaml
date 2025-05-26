@@ -94,3 +94,7 @@ overige_locatie:
   icon: mdi:code-brackets
   floor: ''
   disabled: false
+voorraadkast:
+  icon: mdi:food
+  floor: 0 - Begane Grond
+  disabled: false
