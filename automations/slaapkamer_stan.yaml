@@ -1,0 +1,160 @@
+- id: stan_slaapkamer_avond
+  alias: Stan - Nachtlamp schakelen bij zonsondergang en vaste uitschakeltijd
+  description: Zet de lamp aan bij zonsondergang - 45 min, maar in winter minimaal om 16:30. Uit om 22:00
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-00:45:00"
+      id: bijna_zon_onder
+    - platform: time
+      at: "16:30:00"
+      id: winter_minimum
+    - platform: time
+      at: "22:00:00"
+      id: tijd_2200
+  condition: []
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: bijna_zon_onder
+            - condition: template
+              value_template: >
+                {% set month = now().month %}
+                {% set is_winter = month in [12,1,2,3] %}
+                {{ not is_winter }}
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.slaapkamer_stan_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Lamp aan: zon gaat bijna onder (lente/zomer/herfst)"
+        - conditions:
+            - condition: trigger
+              id: winter_minimum
+            - condition: template
+              value_template: >
+                {% set month = now().month %}
+                {% set is_winter = month in [12,1,2,3] %}
+                {{ is_winter }}
+            - condition: sun
+              after: sunset
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.slaapkamer_stan_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Lamp aan: winter minimum tijd 16:30"
+        - conditions:
+            - condition: trigger
+              id: tijd_2200
+          sequence:
+            - service: light.turn_off
+              target:
+                entity_id: light.slaapkamer_stan_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Lamp uit: het is 22:00"
+  mode: single
+
+- id: stan_slaapkamer_ochtend
+  alias: Stan - Nachtlamp automatisch schakelen rond zonsopkomst
+  description: Zet de lamp aan om 05:00 als het donker is, uit 1 uur na zonsopkomst of uiterlijk om 08:45
+  trigger:
+    - platform: time
+      at: "05:00:00"
+      id: tijd_0500
+    - platform: sun
+      event: sunrise
+      offset: "01:00:00"
+      id: zon_op_plus_1u
+    - platform: time
+      at: "08:45:00"
+      id: tijd_0845
+  condition: []
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: tijd_0500
+            - condition: numeric_state
+              entity_id: sun.sun
+              attribute: elevation
+              below: 3
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.slaapkamer_stan_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Lamp aan: donker om 05:00"
+        - conditions:
+            - condition: trigger
+              id: zon_op_plus_1u
+          sequence:
+            - service: light.turn_off
+              target:
+                entity_id: light.slaapkamer_stan_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Lamp uit: zon al 1 uur op"
+        - conditions:
+            - condition: trigger
+              id: tijd_0845
+          sequence:
+            - service: light.turn_off
+              target:
+                entity_id: light.slaapkamer_stan_led
+            - service: logbook.log
+              data:
+                name: "Automation"
+                message: "Lamp uit: backstop 08:45"
+  mode: single
+
+- id: stan_slaapkamer_remote
+  alias: Stan - Nachtlamp via afstandsbediening (dag en nacht)
+  description: Zet de lamp tijdelijk aan via afstandsbediening, 30 min 's nachts, 1 uur overdag, reset remote state
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/slaapkamer_stan_remote/action
+      payload: 'on'
+  action:
+    - choose:
+        - conditions:
+            - condition: or
+              conditions:
+                - condition: time
+                  after: '22:00:00'
+                - condition: time
+                  before: '05:30:00'
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.slaapkamer_stan_led
+            - delay: "00:30:00"
+        - conditions:
+            - condition: time
+              after: '05:30:00'
+            - condition: time
+              before: '22:00:00'
+          sequence:
+            - service: light.turn_on
+              target:
+                entity_id: light.slaapkamer_stan_led
+            - delay: "01:00:00"
+    - service: light.turn_off
+      target:
+        entity_id: light.slaapkamer_stan_led
+    - service: mqtt.publish
+      data:
+        topic: zigbee2mqtt/slaapkamer_stan_remote/action
+        payload: 'off'
+        retain: false
+  mode: restart

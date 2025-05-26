@@ -1,5 +1,5 @@
-- id: dev_kids_slaapkamer_avond
-  alias: Dev - Nachtlamp schakelen bij zonsondergang en vaste uitschakeltijd
+- id: lize_slaapkamer_avond
+  alias: Lize - Nachtlamp schakelen bij zonsondergang en vaste uitschakeltijd
   description: Zet de lamp aan bij zonsondergang - 45 min, maar in winter minimaal om 16:30. Uit om 22:00
   trigger:
     - platform: sun
@@ -21,16 +21,11 @@
             - condition: template
               value_template: >
                 {% set month = now().month %}
-                {% set is_winter = month in [12,1,2,3] %}
-                {% if is_winter %}
-                  false
-                {% else %}
-                  true
-                {% endif %}
+                {{ month not in [12,1,2,3] }}
           sequence:
             - service: light.turn_on
               target:
-                entity_id: light.werkkamer_serverkast_led
+                entity_id: light.slaapkamer_lize_led
             - service: logbook.log
               data:
                 name: "Automation"
@@ -41,18 +36,13 @@
             - condition: template
               value_template: >
                 {% set month = now().month %}
-                {% set is_winter = month in [12,1,2,3] %}
-                {% if is_winter %}
-                  true
-                {% else %}
-                  false
-                {% endif %}
+                {{ month in [12,1,2,3] }}
             - condition: sun
               after: sunset
           sequence:
             - service: light.turn_on
               target:
-                entity_id: light.werkkamer_serverkast_led
+                entity_id: light.slaapkamer_lize_led
             - service: logbook.log
               data:
                 name: "Automation"
@@ -63,14 +53,15 @@
           sequence:
             - service: light.turn_off
               target:
-                entity_id: light.werkkamer_serverkast_led
+                entity_id: light.slaapkamer_lize_led
             - service: logbook.log
               data:
                 name: "Automation"
                 message: "Lamp uit: het is 22:00"
   mode: single
-- id: dev_kids_slaapkamer_ochtend
-  alias: Dev - Nachtlamp automatisch schakelen rond zonsopkomst
+
+- id: lize_slaapkamer_ochtend
+  alias: Lize - Nachtlamp automatisch schakelen rond zonsopkomst
   description: Zet de lamp aan om 05:00 als het donker is, uit 1 uur na zonsopkomst of uiterlijk om 08:45
   trigger:
     - platform: time
@@ -96,7 +87,7 @@
           sequence:
             - service: light.turn_on
               target:
-                entity_id: light.werkkamer_serverkast_led
+                entity_id: light.slaapkamer_lize_led
             - service: logbook.log
               data:
                 name: "Automation"
@@ -107,7 +98,7 @@
           sequence:
             - service: light.turn_off
               target:
-                entity_id: light.werkkamer_serverkast_led
+                entity_id: light.slaapkamer_lize_led
             - service: logbook.log
               data:
                 name: "Automation"
@@ -118,18 +109,19 @@
           sequence:
             - service: light.turn_off
               target:
-                entity_id: light.werkkamer_serverkast_led
+                entity_id: light.slaapkamer_lize_led
             - service: logbook.log
               data:
                 name: "Automation"
                 message: "Lamp uit: backstop 08:45"
   mode: single
-- id: dev_kids_slaapkamer_remote
-  alias: Dev - Nachtlamp via test remote (dag en nacht)
-  description: Zet de lamp tijdelijk aan via test remote, 30 min 's nachts, 1 uur overdag, reset remote state
+
+- id: lize_slaapkamer_remote
+  alias: Lize - Nachtlamp via afstandsbediening (dag en nacht)
+  description: Zet de lamp tijdelijk aan via afstandsbediening, 30 min 's nachts, 1 uur overdag, reset remote state
   trigger:
     - platform: mqtt
-      topic: zigbee2mqtt/werkkamer_test_remote/action
+      topic: zigbee2mqtt/slaapkamer_lize_remote/action
       payload: 'on'
   action:
     - choose:
@@ -143,7 +135,7 @@
           sequence:
             - service: light.turn_on
               target:
-                entity_id: light.werkkamer_serverkast_led
+                entity_id: light.slaapkamer_lize_led
             - delay: "00:30:00"
         - conditions:
             - condition: time
@@ -153,14 +145,14 @@
           sequence:
             - service: light.turn_on
               target:
-                entity_id: light.werkkamer_serverkast_led
+                entity_id: light.slaapkamer_lize_led
             - delay: "01:00:00"
     - service: light.turn_off
       target:
-        entity_id: light.werkkamer_serverkast_led
+        entity_id: light.slaapkamer_lize_led
     - service: mqtt.publish
       data:
-        topic: zigbee2mqtt/werkkamer_test_remote/action
+        topic: zigbee2mqtt/slaapkamer_lize_remote/action
         payload: 'off'
         retain: false
   mode: restart
