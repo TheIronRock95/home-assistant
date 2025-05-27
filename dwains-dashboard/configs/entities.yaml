@@ -187,3 +187,7 @@ automation.stan_nachtlamp_automatisch_schakelen_rond_zonsopkomst:
   hidden: true
 automation.stan_nachtlamp_via_afstandsbediening_dag_en_nacht:
   hidden: true
+switch.bijkeuken_wasmachine:
+  excluded: true
+switch.bijkeuken_droger:
+  excluded: true
