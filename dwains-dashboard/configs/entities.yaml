@@ -65,15 +65,15 @@ binary_sensor.e3_vitodens_100_vct_0122_burner:
 binary_sensor.nest_protect_gang_battery_health:
   hidden: true
 binary_sensor.nest_protect_gang_co_status:
-  hidden: true
+  hidden: false
 binary_sensor.nest_protect_gang_heat_status:
-  hidden: true
+  hidden: false
 binary_sensor.nest_protect_gang_line_power:
   hidden: true
 binary_sensor.nest_protect_gang_removed_from_base:
   hidden: true
 binary_sensor.nest_protect_gang_smoke_status:
-  hidden: true
+  hidden: false
 sensor.nest_protect_gang_battery_level:
   hidden: true
 sensor.nest_protect_gang_replace_by:
@@ -92,15 +92,16 @@ select.nest_protect_gang_brightness:
 binary_sensor.nest_protect_overloop_battery_health:
   hidden: true
 binary_sensor.nest_protect_overloop_co_status:
-  hidden: true
+  hidden: false
 binary_sensor.nest_protect_overloop_heat_status:
-  hidden: true
+  hidden: false
 binary_sensor.nest_protect_overloop_line_power:
-  hidden: true
+  hidden: false
+  disabled: true
 binary_sensor.nest_protect_overloop_removed_from_base:
   hidden: true
 binary_sensor.nest_protect_overloop_smoke_status:
-  hidden: true
+  hidden: false
 sensor.nest_protect_overloop_battery_level:
   hidden: true
 sensor.nest_protect_overloop_replace_by:
@@ -119,15 +120,15 @@ switch.nest_protect_overloop_nightly_promise:
 binary_sensor.nest_protect_zolder_battery_health:
   hidden: true
 binary_sensor.nest_protect_zolder_co_status:
-  hidden: true
+  hidden: false
 binary_sensor.nest_protect_zolder_heat_status:
-  hidden: true
+  hidden: false
 binary_sensor.nest_protect_zolder_line_power:
   hidden: true
 binary_sensor.nest_protect_zolder_removed_from_base:
   hidden: true
 binary_sensor.nest_protect_zolder_smoke_status:
-  hidden: true
+  hidden: false
 select.nest_protect_zolder_brightness:
   hidden: true
 sensor.nest_protect_zolder_battery_level:
@@ -191,3 +192,23 @@ switch.bijkeuken_wasmachine:
   excluded: true
 switch.bijkeuken_droger:
   excluded: true
+light.slaapkamer_lamp_kledingkast:
+  excluded: true
+switch.werkkamer_serverkast:
+  excluded: true
+sensor.slaapkamer_quinn_klimaat_temperature:
+  grouped_sort_order: 1
+sensor.slaapkamer_quinn_klimaat_humidity:
+  grouped_sort_order: 2
+sensor.slaapkamer_quinn_klimaat_battery:
+  grouped_sort_order: 3
+sensor.slaapkamer_quinn_contact_battery:
+  grouped_sort_order: 4
+sensor.badkamer_klimaat_humidity:
+  grouped_sort_order: 1
+sensor.badkamer_klimaat_temperature:
+  grouped_sort_order: 2
+sensor.badkamer_klimaat_battery:
+  grouped_sort_order: 3
+sensor.badkamer_contact_battery:
+  grouped_sort_order: 4
