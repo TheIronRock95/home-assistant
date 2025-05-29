@@ -1,0 +1,6 @@
+- platform: group
+  name: Terras Spots
+  unique_id: terras_hue_spots
+  entities:
+    - light.terras_spot_links
+    - light.terras_spot_rechts

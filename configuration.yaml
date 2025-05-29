@@ -66,6 +66,7 @@ script: !include_dir_merge_named scripts/
 scene: !include_dir_merge_list scenes/
 template: !include_dir_merge_list templates/
 input_select: !include input_select.yaml
+light: !include light_groups.yaml
 
 shell_command:
   run_gitbackup: bash scripts/backup2git.sh

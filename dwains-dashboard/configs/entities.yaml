@@ -212,3 +212,7 @@ sensor.badkamer_klimaat_battery:
   grouped_sort_order: 3
 sensor.badkamer_contact_battery:
   grouped_sort_order: 4
+light.terras_spot_rechts:
+  hidden: true
+light.terras_spot_links:
+  hidden: true
