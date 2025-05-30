@@ -214,5 +214,11 @@ sensor.badkamer_contact_battery:
   grouped_sort_order: 4
 light.terras_spot_rechts:
   hidden: true
+  excluded: true
 light.terras_spot_links:
+  hidden: true
+  excluded: true
+automation.terras_spots_aan_30_min_voor_zonsondergang:
+  hidden: true
+automation.terras_spots_uit_op_tijd:
   hidden: true
