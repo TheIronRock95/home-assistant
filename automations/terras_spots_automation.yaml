@@ -1,0 +1,38 @@
+- id: terras_spots_aan_bij_zonsondergang
+  alias: 'Terras spots aan 30 min voor zonsondergang'
+  description: 'Zet de terrasverlichting aan een half uur voor zonsondergang'
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-00:30:00"
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: light.terras_spots
+      data:
+        brightness: 200
+        color_temp_kelvin: 3000
+  mode: single
+
+- id: terras_spots_uit_op_tijd
+  alias: 'Terras spots uit op tijd'
+  description: 'Zet de terrasverlichting uit doordeweeks om 23:00 en in het weekend om 01:00'
+  trigger:
+    - platform: time
+      at: "23:00:00"
+    - platform: time
+      at: "01:00:00"
+  condition:
+    - condition: template
+      value_template: >
+        {% set weekday = now().weekday() %}
+        {% if weekday <= 3 %}
+          {{ now().strftime('%H:%M:%S') == '23:00:00' }}
+        {% else %}
+          {{ now().strftime('%H:%M:%S') == '01:00:00' }}
+        {% endif %}
+  action:
+    - service: light.turn_off
+      target:
+        entity_id: light.terras_spots
+  mode: single
