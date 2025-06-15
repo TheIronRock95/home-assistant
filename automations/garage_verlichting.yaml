@@ -1,0 +1,55 @@
+# garage_verlichting.yaml
+- id: garage_lamp_aan_bij_openen
+  alias: Garage - Lamp aan bij openen deur of roldeur
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      to: "open"
+    - platform: state
+      entity_id: binary_sensor.garage_contact_contact
+      to: "on"
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: light.garage_lampenschakelaar
+    - wait_for_trigger:
+        - platform: state
+          entity_id: cover.garage_door
+          to: "closed"
+        - platform: state
+          entity_id: binary_sensor.garage_contact_contact
+          to: "off"
+      continue_on_timeout: false
+    - delay: "00:01:00"
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: light.garage_lampenschakelaar
+              state: "on"
+            - condition: template
+              value_template: "{{ not is_state('switch.garage_lampenschakelaar', 'on') }}"
+          sequence:
+            - service: light.turn_off
+              target:
+                entity_id: light.garage_lampenschakelaar
+
+- id: garage_lamp_handmatig_aan
+  alias: Garage - Lamp handmatig aangezet via Shelly
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id: switch.garage_lampenschakelaar
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: cover.garage_door
+      state: "closed"
+    - condition: state
+      entity_id: binary_sensor.garage_contact_contact
+      state: "off"
+  action:
+    - delay: "00:05:00"
+    - service: light.turn_off
+      target:
+        entity_id: light.garage_lampenschakelaar
