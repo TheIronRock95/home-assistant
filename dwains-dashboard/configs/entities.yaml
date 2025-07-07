@@ -222,3 +222,9 @@ automation.terras_spots_aan_30_min_voor_zonsondergang:
   hidden: true
 automation.terras_spots_uit_op_tijd:
   hidden: true
+sensor.technischeruimte_cv_energy:
+  hidden: true
+sensor.0xb43a31fffec72df6_power:
+  hidden: true
+sensor.keuken_vaatwasser_energy:
+  hidden: true
