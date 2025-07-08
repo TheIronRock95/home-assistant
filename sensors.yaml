@@ -1,0 +1,7 @@
+- platform: template
+  sensors:
+    kamertemperatuur:
+      friendly_name: "Kamertemperatuur"
+      unique_id: kamertemperatuur_sensor
+      unit_of_measurement: "°C"
+      value_template: "{{ state_attr('climate.e3_vitodens_100_vct_0122_heating', 'current_temperature') }}"

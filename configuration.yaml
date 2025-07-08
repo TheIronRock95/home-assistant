@@ -2,10 +2,10 @@
 default_config:
 
 
-# # theme settings for the frontend
-# frontend:
-#   # load custom themes from the themes directory
-#   themes: !include_dir_merge_named themes
+# theme settings for the frontend
+frontend:
+  # load custom themes from the themes directory
+  themes: !include_dir_merge_named themes
 
 # Recorder integration settings for database logging and retention
 recorder:
@@ -67,6 +67,7 @@ scene: !include_dir_merge_list scenes/
 template: !include_dir_merge_list templates/
 input_select: !include input_select.yaml
 light: !include light_groups.yaml
+sensor: !include sensors.yaml
 
 shell_command:
   run_gitbackup: bash scripts/backup2git.sh
