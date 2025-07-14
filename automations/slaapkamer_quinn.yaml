@@ -1,0 +1,37 @@
+- id: quinn_slaapkamer_remote
+  alias: Quinn - lamp via afstandsbediening
+  mode: single
+  trigger:
+    - platform: mqtt
+      topic: zigbee2mqtt/slaapkamer_quinn_remote/action
+  condition: []
+  action:
+    - choose:
+      # Toggle aan/uit bij on of off
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'on' or trigger.payload == 'off' }}"
+        sequence:
+          - service: light.toggle
+            target:
+              entity_id: light.slaapkamer_quinn_lamp
+
+      # Dim omhoog bij brightness_move_up
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'brightness_move_up' }}"
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: light.slaapkamer_quinn_lamp
+              brightness_step_pct: 10
+
+      # Dim omlaag bij brightness_move_down
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'brightness_move_down' }}"
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: light.slaapkamer_quinn_lamp
+              brightness_step_pct: -10
