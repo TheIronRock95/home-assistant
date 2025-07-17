@@ -228,3 +228,27 @@ sensor.0xb43a31fffec72df6_power:
   hidden: true
 sensor.keuken_vaatwasser_energy:
   hidden: true
+sensor.zolder_data_mode:
+  hidden: true
+sensor.zolder_outside_temperature:
+  hidden: true
+sensor.zolder_inside_temperature:
+  hidden: true
+switch.zolder_nanoe:
+  hidden: true
+switch.zolder_econavi:
+  hidden: true
+switch.zolder_ai_eco:
+  hidden: true
+switch.zolder_iauto_x:
+  hidden: true
+select.zolder_horizontal_swing_mode:
+  hidden: true
+select.zolder_vertical_swing_mode:
+  hidden: true
+button.zolder_fetch_latest_app_version:
+  hidden: true
+button.zolder_fetch_latest_data:
+  hidden: true
+button.zolder_fetch_latest_energy_data:
+  hidden: true
