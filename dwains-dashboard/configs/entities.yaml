@@ -236,6 +236,7 @@ sensor.zolder_inside_temperature:
   hidden: true
 switch.zolder_nanoe:
   hidden: true
+  excluded: true
 switch.zolder_econavi:
   hidden: true
 switch.zolder_ai_eco:
