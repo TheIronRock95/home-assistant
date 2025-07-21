@@ -66,6 +66,7 @@ script: !include_dir_merge_named scripts/
 scene: !include_dir_merge_list scenes/
 template: !include_dir_merge_list templates/
 input_select: !include input_select.yaml
+input_boolean: !include input_booleans.yaml
 light: !include light_groups.yaml
 sensor: !include sensors.yaml
 

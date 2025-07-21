@@ -1,0 +1,16 @@
+lize_thuis:
+  name: Lize is thuis
+  icon: mdi:account-child
+
+stan_thuis:
+  name: Stan is thuis
+  icon: mdi:account-child-circle
+
+waste_moved:
+  name: Waste has been moved
+  initial: 'off'
+  icon: mdi:delete-empty
+
+waste_reminder:
+  name: Waste reminder enabled
+  initial: 'on'

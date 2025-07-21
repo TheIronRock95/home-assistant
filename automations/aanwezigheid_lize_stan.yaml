@@ -1,0 +1,85 @@
+- alias: Vragen of kinderen thuis zijn (standaardregeling)
+  id: vragen_kinderen_thuis_standaardregeling
+  trigger:
+    - platform: time
+      at: '18:00:00'
+  condition:
+    - condition: template
+      value_template: >
+        {% set weeknr = now().isocalendar().week %}
+        {% set day = now().weekday() %}
+        {{ (weeknr % 2 == 1 and day == 2) or (weeknr % 2 == 0 and day == 1) }}
+  action:
+    - service: notify.mobile_app_spotje
+      data:
+        message: "Zijn de kinderen er nu?"
+        title: "Kinderen thuis?"
+        data:
+          tag: kinderen_thuis_vraag
+          actions:
+            - action: "KIDS_THUIS"
+              title: "Ze zijn er"
+            - action: "KIDS_WEG"
+              title: "Ze zijn weg"
+    - service: notify.mobile_app_iphone_ilse
+      data:
+        message: "Zijn de kinderen er nu?"
+        title: "Kinderen thuis?"
+        data:
+          tag: kinderen_thuis_vraag
+          actions:
+            - action: "KIDS_THUIS"
+              title: "Ze zijn er"
+            - action: "KIDS_WEG"
+              title: "Ze zijn weg"
+  mode: single
+
+- alias: Kinderen zijn thuis (via melding)
+  id: kinderen_zijn_thuis_via_melding
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: KIDS_THUIS
+  action:
+    - service: input_boolean.turn_on
+      target:
+        entity_id:
+          - input_boolean.lize_thuis
+          - input_boolean.stan_thuis
+    - service: notify.mobile_app_spotje
+      data:
+        message: clear_notification
+        data:
+          tag: kinderen_thuis_vraag
+    - service: notify.mobile_app_iphone_ilse
+      data:
+        message: clear_notification
+        data:
+          tag: kinderen_thuis_vraag
+  mode: single
+
+- alias: Kinderen zijn weg (via melding)
+  id: kinderen_zijn_weg_via_melding
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: KIDS_WEG
+  action:
+    - service: input_boolean.turn_off
+      target:
+        entity_id:
+          - input_boolean.lize_thuis
+          - input_boolean.stan_thuis
+    - service: notify.mobile_app_spotje
+      data:
+        message: clear_notification
+        data:
+          tag: kinderen_thuis_vraag
+    - service: notify.mobile_app_iphone_ilse
+      data:
+        message: clear_notification
+        data:
+          tag: kinderen_thuis_vraag
+  mode: single

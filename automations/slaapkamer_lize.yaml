@@ -12,7 +12,10 @@
     - platform: time
       at: "22:00:00"
       id: tijd_2200
-  condition: []
+  condition:
+    - condition: state
+      entity_id: input_boolean.lize_thuis
+      state: 'on'
   action:
     - choose:
         - conditions:
@@ -74,7 +77,10 @@
     - platform: time
       at: "08:45:00"
       id: tijd_0845
-  condition: []
+  condition:
+    - condition: state
+      entity_id: input_boolean.lize_thuis
+      state: 'on'
   action:
     - choose:
         - conditions:
@@ -126,6 +132,9 @@
   condition:
     - condition: not
       conditions:
+        - condition: state
+          entity_id: input_boolean.lize_thuis
+          state: 'on'
         - condition: time
           after: '10:00:00'
           before: '14:00:00'
@@ -143,4 +152,3 @@
         payload: 'off'
         retain: false
   mode: restart
-
