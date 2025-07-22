@@ -16,7 +16,7 @@
                 entity_id: light.voorraadkast_lamp
               data:
                 brightness: 153
-                color_temp: 294  # komt overeen met 3401K
+                color_temp_kelvin: 3401  # was color_temp: 294
         - conditions:
             - condition: template
               value_template: "{{ trigger.payload_json.contact == true }}"
