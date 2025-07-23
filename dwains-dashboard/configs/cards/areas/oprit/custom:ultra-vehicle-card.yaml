@@ -1,0 +1,99 @@
+action_image_width: 100
+bars:
+- action_animation: none
+  action_animation_entity: ''
+  action_animation_state: ''
+  alignment: space-between
+  animation_entity: switch.skoda_enyaq_charging
+  animation_state: 'on'
+  animation_type: glow
+  background_color: 'var(--card-background-color, #121212)'
+  bar_color: 'var(--primary-color, #3498db)'
+  bar_name: Battery
+  bar_radius: round
+  bar_size: regular
+  bar_style: flat
+  border_color: 'var(--divider-color, #555555)'
+  entity: sensor.skoda_enyaq_battery_percentage
+  gradient_display_mode: value_based
+  gradient_stops:
+  - color: '#ff0000'
+    id: '1'
+    position: 0
+  - color: '#00ff00'
+    id: '2'
+    position: 100
+  left_condition:
+    entity: ''
+    state: ''
+    type: none
+  left_entity: sensor.skoda_enyaq_range
+  left_text_color: 'var(--primary-text-color, #ffffff)'
+  left_text_size: 14
+  left_title: Actieradius
+  left_title_color: 'var(--secondary-text-color, #999999)'
+  left_title_size: 14
+  limit_entity: number.skoda_enyaq_charge_limit
+  limit_indicator_color: 'var(--error-color, #ff0000)'
+  percentage_amount_entity: ''
+  percentage_attribute: ''
+  percentage_template: ''
+  percentage_text_size: 15
+  percentage_total_entity: ''
+  percentage_type: entity
+  right_condition:
+    entity: ''
+    state: ''
+    type: none
+  right_entity: sensor.skoda_enyaq_charging_power
+  right_text_color: 'var(--primary-text-color, #ffffff)'
+  right_text_size: 14
+  right_title: Laadvermogen
+  right_title_color: 'var(--secondary-text-color, #999999)'
+  right_title_size: 14
+  show_left: true
+  show_left_title: true
+  show_left_value: true
+  show_percentage: true
+  show_right: true
+  show_right_title: true
+  show_right_value: true
+  use_gradient: false
+  width: '100'
+col_span: '2'
+col_span_lg: '2'
+col_span_xl: '2'
+formatted_entities: true
+help_highlight: true
+icon_rows: []
+image_priority_mode: order
+images:
+- id: imfvcpy
+  image: /local/images/skoda_enyaq.png
+  image_type: url
+  image_width: 100
+  name: Vehicle Image
+  priority: 0
+layout_type: single
+position: top
+row_span: '2'
+row_span_lg: '2'
+row_span_xl: '2'
+sections_order:
+- title
+- image
+- info
+- bar_0
+show_car_state: true
+show_info_icons: true
+show_location: true
+show_mileage: true
+show_units: true
+status_image_type: none
+title: Skoda Enyaq
+title_alignment: center
+title_bold: true
+title_size: 24
+type: custom:ultra-vehicle-card
+vehicle_image_type: default
+vehicle_image_width: 100
