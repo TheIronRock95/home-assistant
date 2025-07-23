@@ -6,7 +6,7 @@ bars:
   alignment: space-between
   animation_entity: switch.skoda_enyaq_charging
   animation_state: 'on'
-  animation_type: glow
+  animation_type: charging-lines
   background_color: 'var(--card-background-color, #121212)'
   bar_color: 'var(--primary-color, #3498db)'
   bar_name: Battery
@@ -42,9 +42,9 @@ bars:
   percentage_total_entity: ''
   percentage_type: entity
   right_condition:
-    entity: ''
-    state: ''
-    type: none
+    entity: switch.skoda_enyaq_charging
+    state: 'on'
+    type: show
   right_entity: sensor.skoda_enyaq_charging_power
   right_text_color: 'var(--primary-text-color, #ffffff)'
   right_text_size: 14
@@ -58,14 +58,125 @@ bars:
   show_right: true
   show_right_title: true
   show_right_value: true
-  use_gradient: false
+  use_gradient: true
   width: '100'
 col_span: '2'
 col_span_lg: '2'
 col_span_xl: '2'
 formatted_entities: true
 help_highlight: true
-icon_rows: []
+icon_rows:
+- alignment: center
+  columns: 0
+  confirmation_mode: false
+  icons:
+  - action: ''
+    active_state: heat_cool
+    active_state_text: ''
+    active_template: ''
+    active_template_mode: false
+    color_active: var(--primary-color)
+    color_inactive: var(--secondary-text-color)
+    container_background: none
+    container_background_color: var(--secondary-background-color)
+    draggable: true
+    dynamic_color_template: ''
+    dynamic_color_template_mode: false
+    dynamic_icon_template: ''
+    dynamic_icon_template_mode: false
+    entity: climate.skoda_enyaq_air_conditioning
+    icon_active: mdi:fan
+    icon_background: none
+    icon_background_color: var(--secondary-background-color)
+    icon_inactive: mdi:fan-off
+    icon_size: 24
+    inactive_state: '"off"'
+    inactive_state_text: ''
+    inactive_template: ''
+    inactive_template_mode: false
+    name: ''
+    name_color_active: var(--primary-text-color)
+    name_color_inactive: var(--primary-text-color)
+    on_click_action: more-info
+    service_data: {}
+    show_icon_active: true
+    show_icon_inactive: true
+    show_name: false
+    show_name_active: false
+    show_name_inactive: false
+    show_state: true
+    show_state_active: true
+    show_state_inactive: true
+    show_units: true
+    single_click_action: toggle
+    state_color_active: var(--primary-text-color)
+    state_color_inactive: var(--secondary-text-color)
+    text_alignment: center
+    text_position: bottom
+    text_size: 14
+    use_entity_color_for_container_background: false
+    use_entity_color_for_icon: false
+    use_entity_color_for_icon_active: false
+    use_entity_color_for_icon_background: false
+    use_entity_color_for_icon_inactive: false
+    vertical_alignment: center
+  - action: ''
+    active_state: unlocked
+    active_state_text: ''
+    active_template: ''
+    active_template_mode: false
+    color_active: var(--primary-color)
+    color_inactive: var(--secondary-text-color)
+    container_background: none
+    container_background_color: var(--secondary-background-color)
+    double_click_action: call-service
+    double_service: lock.lock
+    draggable: true
+    dynamic_color_template: ''
+    dynamic_color_template_mode: false
+    dynamic_icon_template: ''
+    dynamic_icon_template_mode: false
+    entity: lock.skoda_enyaq_door_lock
+    icon_active: mdi:lock-open-variant
+    icon_background: none
+    icon_background_color: var(--secondary-background-color)
+    icon_inactive: mdi:lock
+    icon_size: 24
+    inactive_state: locked
+    inactive_state_text: ''
+    inactive_template: ''
+    inactive_template_mode: false
+    name: Locks
+    name_color_active: var(--primary-text-color)
+    name_color_inactive: var(--primary-text-color)
+    on_click_action: more-info
+    service_data: {}
+    show_icon_active: true
+    show_icon_inactive: true
+    show_name: false
+    show_name_active: false
+    show_name_inactive: false
+    show_state: true
+    show_state_active: true
+    show_state_inactive: true
+    show_units: true
+    single_click_action: call-service
+    single_service: lock.unlock
+    state_color_active: var(--primary-text-color)
+    state_color_inactive: var(--secondary-text-color)
+    text_alignment: center
+    text_position: bottom
+    text_size: 14
+    use_entity_color_for_container_background: false
+    use_entity_color_for_icon: false
+    use_entity_color_for_icon_active: false
+    use_entity_color_for_icon_background: false
+    use_entity_color_for_icon_inactive: false
+    vertical_alignment: center
+  id: 5ukn69j
+  spacing: none
+  vertical_alignment: center
+  width: '100'
 image_priority_mode: order
 images:
 - id: imfvcpy
@@ -76,12 +187,13 @@ images:
   priority: 0
 layout_type: single
 position: top
-row_span: '2'
-row_span_lg: '2'
-row_span_xl: '2'
+row_span: '1'
+row_span_lg: '1'
+row_span_xl: '1'
 sections_order:
 - title
 - image
+- icon_row_5ukn69j
 - info
 - bar_0
 show_car_state: true
