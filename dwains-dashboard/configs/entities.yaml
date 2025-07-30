@@ -190,12 +190,15 @@ automation.stan_nachtlamp_via_afstandsbediening_dag_en_nacht:
   hidden: true
 switch.bijkeuken_wasmachine:
   excluded: true
+  hidden: true
 switch.bijkeuken_droger:
   excluded: true
+  hidden: true
 light.slaapkamer_lamp_kledingkast:
   excluded: true
 switch.werkkamer_serverkast:
   excluded: true
+  hidden: true
 sensor.slaapkamer_quinn_klimaat_temperature:
   grouped_sort_order: 1
 sensor.slaapkamer_quinn_klimaat_humidity:
@@ -206,8 +209,10 @@ sensor.slaapkamer_quinn_contact_battery:
   grouped_sort_order: 4
 sensor.badkamer_klimaat_humidity:
   grouped_sort_order: 1
+  hidden: true
 sensor.badkamer_klimaat_temperature:
   grouped_sort_order: 2
+  hidden: true
 sensor.badkamer_klimaat_battery:
   grouped_sort_order: 3
 sensor.badkamer_contact_battery:
@@ -252,4 +257,101 @@ button.zolder_fetch_latest_app_version:
 button.zolder_fetch_latest_data:
   hidden: true
 button.zolder_fetch_latest_energy_data:
+  hidden: true
+switch.siemens_washer_sound_mute:
+  hidden: true
+switch.siemens_washer_door_ring_light:
+  hidden: true
+switch.siemens_washer_child_lock:
+  hidden: true
+switch.siemens_washer_time_light:
+  hidden: true
+switch.siemens_washer_drum_light:
+  hidden: true
+switch.siemens_washer_end_signal:
+  hidden: true
+sensor.bijkeuken_wasmachine_power:
+  grouped_sort_order: 1
+sensor.bijkeuken_droger_power:
+  grouped_sort_order: 2
+sensor.bijkeuken_wasmachine_energy:
+  grouped_sort_order: 3
+sensor.bijkeuken_droger_energy:
+  grouped_sort_order: 4
+sensor.siemens_washer_active_program:
+  grouped_sort_order: 14
+  hidden: true
+sensor.siemens_washer_operation_state:
+  grouped_sort_order: 15
+  hidden: true
+sensor.siemens_washer_power_state:
+  grouped_sort_order: 16
+  hidden: true
+sensor.siemens_washer_estimated_total_program_time:
+  grouped_sort_order: 5
+sensor.siemens_washer_door:
+  grouped_sort_order: 17
+  excluded: true
+  hidden: true
+sensor.siemens_washer_spin_speed:
+  grouped_sort_order: 18
+  hidden: true
+sensor.siemens_washer_laundry_reload:
+  grouped_sort_order: 19
+  hidden: true
+sensor.siemens_washer_remaining_program_time:
+  grouped_sort_order: 6
+sensor.siemens_washer_program_progress:
+  grouped_sort_order: 7
+  hidden: true
+sensor.siemens_washer_process_phase:
+  grouped_sort_order: 20
+  hidden: true
+sensor.siemens_dryer_laundry_reload:
+  grouped_sort_order: 21
+  hidden: true
+sensor.siemens_dryer_remaining_program_time:
+  grouped_sort_order: 8
+sensor.siemens_dryer_estimated_total_program_time:
+  grouped_sort_order: 10
+sensor.siemens_dryer_process_phase:
+  grouped_sort_order: 22
+  hidden: true
+sensor.siemens_dryer_active_program:
+  grouped_sort_order: 23
+  hidden: true
+sensor.siemens_dryer_program_progress:
+  grouped_sort_order: 9
+  hidden: true
+sensor.siemens_dryer_operation_state:
+  grouped_sort_order: 24
+  hidden: true
+sensor.siemens_dryer_door:
+  grouped_sort_order: 25
+  excluded: true
+  hidden: true
+sensor.siemens_dryer_power_state:
+  grouped_sort_order: 26
+  hidden: true
+sensor.bijkeuken_klimaat_battery:
+  grouped_sort_order: 11
+sensor.bijkeuken_klimaat_temperature:
+  grouped_sort_order: 12
+sensor.bijkeuken_klimaat_humidity:
+  grouped_sort_order: 13
+binary_sensor.siemens_washer_connection:
+  hidden: true
+binary_sensor.siemens_dryer_connection:
+  hidden: true
+binary_sensor.siemens_dryer_care_cycle_recommended:
+  hidden: true
+automation.garage_lamp_aan_bij_openen_deur_of_roldeur:
+  hidden: true
+automation.garage_lamp_handmatig_aangezet_via_shelly:
+  hidden: true
+binary_sensor.garage_door_operational_problem:
+  hidden: true
+sensor.p1_meter_tariff:
+  hidden: true
+automation.quinn_lamp_via_afstandsbediening:
   hidden: true
