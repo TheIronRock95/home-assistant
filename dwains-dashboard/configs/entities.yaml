@@ -211,12 +211,25 @@ sensor.badkamer_klimaat_humidity:
   grouped_sort_order: 1
   hidden: true
 sensor.badkamer_klimaat_temperature:
-  grouped_sort_order: 2
-  hidden: true
+  grouped_sort_order: 1
+  hidden: false
+  custom_card: true
+  excluded: false
+  disabled: false
+  friendly_name: ''
+  col_span: '2'
+  row_span: '1'
+  col_span_lg: '2'
+  row_span_lg: '1'
+  col_span_xl: '2'
+  row_span_xl: '1'
+  custom_popup: false
 sensor.badkamer_klimaat_battery:
   grouped_sort_order: 3
+  custom_card: true
 sensor.badkamer_contact_battery:
-  grouped_sort_order: 4
+  grouped_sort_order: 2
+  custom_card: true
 light.terras_spot_rechts:
   hidden: true
   excluded: true
@@ -355,3 +368,5 @@ sensor.p1_meter_tariff:
   hidden: true
 automation.quinn_lamp_via_afstandsbediening:
   hidden: true
+binary_sensor.badkamer_contact_contact:
+  custom_card: true

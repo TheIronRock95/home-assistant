@@ -1,0 +1,46 @@
+cards:
+- cards:
+  - card_mod:
+      style: "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
+    entity: sensor.badkamer_klimaat_temperature
+    icon_color: green
+    name: Temperatuur
+    primary_info: state
+    secondary_info: name
+    type: custom:mushroom-entity-card
+  - card_mod:
+      style: "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
+    entity: sensor.badkamer_klimaat_humidity
+    icon_color: blue
+    name: Luchtvochtigheid
+    primary_info: state
+    secondary_info: name
+    type: custom:mushroom-entity-card
+  columns: 2
+  square: false
+  type: grid
+- animate: true
+  card_mod:
+    style: "ha-card {\n  box-shadow: none;\n  border: none;\n}\n"
+  entities:
+  - color: green
+    entity: sensor.badkamer_klimaat_temperature
+    line_width: 0.5
+    name: Temperatuur
+  - color: blue
+    entity: sensor.badkamer_klimaat_humidity
+    line_width: 0.5
+    name: Luchtvochtigheid
+    y_axis: secondary
+  hours_to_show: 24
+  points_per_hour: 5
+  show:
+    average: true
+    extrema: true
+    icon: false
+    labels: true
+    legend: true
+    name: false
+    state: false
+  type: custom:mini-graph-card
+type: custom:vertical-stack-in-card
