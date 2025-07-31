@@ -1,0 +1,18 @@
+blueprint:
+  custom_cards:
+  - mushroom-template-card
+  description: Replace binary sensor card with Mushroom template card with conditional
+    color
+  name: Replace Door Sensor with Mushroom Template Card
+  type: replace-card
+  version: '1.0'
+card:
+  type: custom:mushroom-template-card
+  entity: $replace_with_input_entity$
+  primary: $replace_with_input_name$
+  icon: mdi:door
+  icon_color: '{{ ''red'' if is_state(entity, ''on'') else ''green'' }}'
+  fill_container: true
+  layout: vertical
+  tap_action:
+    action: none

@@ -1,0 +1,11 @@
+entity: binary_sensor.badkamer_contact_contact
+fill_container: true
+icon: mdi:door
+icon_color: '{{ ''red'' if is_state(entity, ''on'') else ''green'' }}
+
+  '
+layout: vertical
+primary: Badkamerdeur
+tap_action:
+  action: none
+type: custom:mushroom-template-card

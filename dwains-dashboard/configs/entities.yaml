@@ -3,6 +3,7 @@ sensor.slaapkamer_rolgordijn_device_temperature:
   hidden: true
 sensor.slaapkamer_rolgordijn_battery:
   grouped_sort_order: 3
+  custom_card: true
 sensor.slaapkamer_klimaat_temperature:
   grouped_sort_order: 1
 sensor.slaapkamer_rolgordijn_motor_state:
@@ -10,6 +11,7 @@ sensor.slaapkamer_rolgordijn_motor_state:
   hidden: true
 sensor.slaapkamer_klimaat_battery:
   grouped_sort_order: 4
+  custom_card: true
 sensor.slaapkamer_klimaat_humidity:
   grouped_sort_order: 2
 button.woonkamer_afstandsbediening_identify:
@@ -158,20 +160,37 @@ select.washing_machine_spin_speed:
   grouped_sort_order: 6
 sensor.slaapkamer_lize_klimaat_temperature:
   grouped_sort_order: 1
+  custom_card: true
+  hidden: false
+  excluded: false
+  disabled: false
+  friendly_name: ''
+  col_span: '2'
+  row_span: '1'
+  col_span_lg: '2'
+  row_span_lg: '1'
+  col_span_xl: '2'
+  row_span_xl: '1'
+  custom_popup: false
 sensor.slaapkamer_lize_klimaat_battery:
   grouped_sort_order: 3
+  custom_card: true
 sensor.slaapkamer_lize_klimaat_humidity:
   grouped_sort_order: 2
+  hidden: true
 sensor.slaapkamer_lize_remote_battery:
   grouped_sort_order: 4
+  custom_card: true
 sensor.slaapkamer_stan_klimaat_temperature:
   grouped_sort_order: 1
 sensor.slaapkamer_stan_klimaat_humidity:
   grouped_sort_order: 2
 sensor.slaapkamer_stan_klimaat_battery:
   grouped_sort_order: 3
+  custom_card: true
 sensor.slaapkamer_stan_remote_battery:
   grouped_sort_order: 4
+  custom_card: true
 automation.ikea_remote_control_living_room_lights:
   hidden: true
 automation.voorraadkast_verlichting_via_mqtt:
@@ -205,8 +224,10 @@ sensor.slaapkamer_quinn_klimaat_humidity:
   grouped_sort_order: 2
 sensor.slaapkamer_quinn_klimaat_battery:
   grouped_sort_order: 3
+  custom_card: true
 sensor.slaapkamer_quinn_contact_battery:
   grouped_sort_order: 4
+  custom_card: true
 sensor.badkamer_klimaat_humidity:
   grouped_sort_order: 1
   hidden: true
@@ -284,13 +305,13 @@ switch.siemens_washer_drum_light:
 switch.siemens_washer_end_signal:
   hidden: true
 sensor.bijkeuken_wasmachine_power:
-  grouped_sort_order: 1
-sensor.bijkeuken_droger_power:
-  grouped_sort_order: 2
-sensor.bijkeuken_wasmachine_energy:
   grouped_sort_order: 3
-sensor.bijkeuken_droger_energy:
+sensor.bijkeuken_droger_power:
   grouped_sort_order: 4
+sensor.bijkeuken_wasmachine_energy:
+  grouped_sort_order: 5
+sensor.bijkeuken_droger_energy:
+  grouped_sort_order: 6
 sensor.siemens_washer_active_program:
   grouped_sort_order: 14
   hidden: true
@@ -313,7 +334,7 @@ sensor.siemens_washer_laundry_reload:
   grouped_sort_order: 19
   hidden: true
 sensor.siemens_washer_remaining_program_time:
-  grouped_sort_order: 6
+  grouped_sort_order: 7
 sensor.siemens_washer_program_progress:
   grouped_sort_order: 7
   hidden: true
@@ -347,11 +368,12 @@ sensor.siemens_dryer_power_state:
   grouped_sort_order: 26
   hidden: true
 sensor.bijkeuken_klimaat_battery:
-  grouped_sort_order: 11
+  grouped_sort_order: 9
+  custom_card: true
 sensor.bijkeuken_klimaat_temperature:
-  grouped_sort_order: 12
+  grouped_sort_order: 1
 sensor.bijkeuken_klimaat_humidity:
-  grouped_sort_order: 13
+  grouped_sort_order: 2
 binary_sensor.siemens_washer_connection:
   hidden: true
 binary_sensor.siemens_dryer_connection:
@@ -369,4 +391,170 @@ sensor.p1_meter_tariff:
 automation.quinn_lamp_via_afstandsbediening:
   hidden: true
 binary_sensor.badkamer_contact_contact:
+  custom_card: true
+binary_sensor.siemens_washer_door:
+  custom_card: true
+binary_sensor.siemens_dryer_door:
+  custom_card: true
+binary_sensor.garage_contact_contact:
+  custom_card: true
+binary_sensor.wc_deur_contact_contact:
+  custom_card: true
+binary_sensor.voorraadkast_contact_contact:
+  custom_card: true
+binary_sensor.slaapkamer_contact_contact:
+  custom_card: true
+binary_sensor.werkkamer_deur_contact_contact:
+  custom_card: true
+binary_sensor.slaapkamer_quinn_contact_contact:
+  custom_card: true
+binary_sensor.0x0ceff6fffe645a62_contact:
+  custom_card: true
+binary_sensor.slaapkamer_stan_contact_contact:
+  custom_card: true
+sensor.slaapkamer_stan_contact_battery:
+  custom_card: true
+sensor.0x0ceff6fffe645a62_battery:
+  custom_card: true
+sensor.slaapkamer_quinn_remote_battery:
+  custom_card: true
+sensor.werkkamer_deur_contact_battery:
+  custom_card: true
+  grouped_sort_order: 4
+sensor.slaapkamer_contact_battery:
+  custom_card: true
+sensor.werkkamer_klimaat_battery:
+  custom_card: true
+  grouped_sort_order: 3
+sensor.werkkamer_klimaat_temperature:
+  grouped_sort_order: 1
+sensor.werkkamer_klimaat_humidity:
+  grouped_sort_order: 2
+sensor.hp_officejet_pro_6970_black_ink:
+  grouped_sort_order: 5
+sensor.hp_officejet_pro_6970_cyan_ink:
+  grouped_sort_order: 6
+sensor.hp_officejet_pro_6970_magenta_ink:
+  grouped_sort_order: 7
+sensor.hp_officejet_pro_6970_yellow_ink:
+  grouped_sort_order: 8
+sensor.hp_officejet_pro_6970:
+  grouped_sort_order: 9
+sensor.werkkamer_serverkast_power:
+  grouped_sort_order: 10
+sensor.werkkamer_serverkast_energy:
+  grouped_sort_order: 11
+sensor.achtertuin_klimaat_battery:
+  custom_card: true
+  grouped_sort_order: 13
+sensor.achtertuin_klimaat_temperature:
+  grouped_sort_order: 1
+sensor.afvalwijzer_next_date:
+  grouped_sort_order: 3
+sensor.afvalwijzer_next_in_days:
+  grouped_sort_order: 4
+sensor.afvalwijzer_papier:
+  grouped_sort_order: 5
+sensor.afvalwijzer_today:
+  grouped_sort_order: 6
+sensor.afvalwijzer_restafval:
+  grouped_sort_order: 7
+sensor.afvalwijzer_gft:
+  grouped_sort_order: 8
+sensor.afvalwijzer_day_after_tomorrow:
+  grouped_sort_order: 9
+sensor.afvalwijzer_tomorrow:
+  grouped_sort_order: 10
+sensor.afvalwijzer_next_type:
+  grouped_sort_order: 11
+sensor.afvalwijzer_plastic:
+  grouped_sort_order: 12
+sensor.achtertuin_klimaat_humidity:
+  grouped_sort_order: 2
+sensor.voorraadkast_klimaat_temperature:
+  grouped_sort_order: 1
+sensor.voorraadkast_contact_battery:
+  grouped_sort_order: 3
+  custom_card: true
+sensor.voorraadkast_klimaat_battery:
+  grouped_sort_order: 4
+  custom_card: true
+sensor.voorraadkast_klimaat_humidity:
+  grouped_sort_order: 2
+sensor.wc_deur_contact_battery:
+  custom_card: true
+  grouped_sort_order: 3
+sensor.wc_klimaat_battery:
+  custom_card: true
+  grouped_sort_order: 4
+sensor.wc_klimaat_temperature:
+  grouped_sort_order: 1
+sensor.wc_klimaat_humidity:
+  grouped_sort_order: 2
+sensor.gang_klimaat_battery:
+  custom_card: true
+  grouped_sort_order: 3
+sensor.gang_klimaat_temperature:
+  grouped_sort_order: 1
+sensor.gang_klimaat_humidity:
+  grouped_sort_order: 2
+sensor.keuken_bewegingssensor_battery:
+  custom_card: true
+  grouped_sort_order: 5
+sensor.keuken_klimaat_battery:
+  custom_card: true
+  grouped_sort_order: 6
+sensor.keuken_klimaat_temperature:
+  grouped_sort_order: 1
+sensor.keuken_bewegingssensor_illumination:
+  grouped_sort_order: 4
+sensor.keuken_klimaat_humidity:
+  grouped_sort_order: 2
+sensor.keuken_vaatwasser_power:
+  grouped_sort_order: 3
+sensor.0x7cc6b6fffe0b812d_battery:
+  custom_card: true
+  grouped_sort_order: 4
+sensor.0xb43a31fffec72df6_energy:
+  grouped_sort_order: 3
+sensor.0x7cc6b6fffe0b812d_temperature:
+  grouped_sort_order: 2
+sensor.0x7cc6b6fffe0b812d_humidity:
+  grouped_sort_order: 1
+sensor.garage_contact_battery:
+  custom_card: true
+  grouped_sort_order: 4
+sensor.garage_klimaat_battery:
+  custom_card: true
+  grouped_sort_order: 3
+sensor.garage_klimaat_temperature:
+  grouped_sort_order: 1
+sensor.garage_klimaat_humidity:
+  grouped_sort_order: 2
+sensor.woonkamer_afstandsbediening_battery:
+  custom_card: true
+  grouped_sort_order: 4
+sensor.woonkamer_klimaat_battery:
+  custom_card: true
+  grouped_sort_order: 5
+sensor.woonkamer_klimaat_temperature:
+  grouped_sort_order: 1
+sensor.woonkamer_klimaat_humidity:
+  grouped_sort_order: 3
+sensor.kamertemperatuur:
+  grouped_sort_order: 2
+light.slaapkamer_lize_led:
+  custom_card: true
+  hidden: false
+  excluded: false
+  disabled: false
+  friendly_name: ''
+  col_span: '2'
+  row_span: '1'
+  col_span_lg: '2'
+  row_span_lg: '1'
+  col_span_xl: '2'
+  row_span_xl: '1'
+  custom_popup: false
+number.e3_vitodens_100_vct_0122_dhw_temperature:
   custom_card: true
