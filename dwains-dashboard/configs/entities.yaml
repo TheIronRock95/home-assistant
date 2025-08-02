@@ -183,8 +183,21 @@ sensor.slaapkamer_lize_remote_battery:
   custom_card: true
 sensor.slaapkamer_stan_klimaat_temperature:
   grouped_sort_order: 1
+  custom_card: true
+  hidden: false
+  excluded: false
+  disabled: false
+  friendly_name: ''
+  col_span: '2'
+  row_span: '1'
+  col_span_lg: '2'
+  row_span_lg: '1'
+  col_span_xl: '2'
+  row_span_xl: '1'
+  custom_popup: false
 sensor.slaapkamer_stan_klimaat_humidity:
   grouped_sort_order: 2
+  hidden: true
 sensor.slaapkamer_stan_klimaat_battery:
   grouped_sort_order: 3
   custom_card: true
@@ -558,3 +571,16 @@ light.slaapkamer_lize_led:
   custom_popup: false
 number.e3_vitodens_100_vct_0122_dhw_temperature:
   custom_card: true
+light.slaapkamer_stan_led:
+  custom_card: true
+  hidden: false
+  excluded: false
+  disabled: false
+  friendly_name: ''
+  col_span: '2'
+  row_span: '1'
+  col_span_lg: '2'
+  row_span_lg: '1'
+  col_span_xl: '2'
+  row_span_xl: '1'
+  custom_popup: false

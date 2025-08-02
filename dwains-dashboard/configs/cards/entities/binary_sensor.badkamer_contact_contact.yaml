@@ -1,11 +1,13 @@
-entity: binary_sensor.badkamer_contact_contact
-fill_container: true
-icon: mdi:door
-icon_color: '{{ ''red'' if is_state(entity, ''on'') else ''green'' }}
-
-  '
-layout: vertical
-primary: Badkamerdeur
-tap_action:
-  action: none
-type: custom:mushroom-template-card
+blueprint: replace_door_sensor_with_mushroom_template_card.yaml
+card:
+  entity: $replace_with_input_entity$
+  fill_container: true
+  icon: mdi:door
+  icon_color: '{{ "red" if is_state(entity, "on") else "green" }}'
+  layout: vertical
+  primary: $replace_with_input_name$
+  tap_action:
+    action: more-info
+  type: custom:mushroom-template-card
+input_entity: binary_sensor.badkamer_contact_contact
+type: custom:dwains-blueprint-card

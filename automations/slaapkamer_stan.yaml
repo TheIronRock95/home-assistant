@@ -132,14 +132,15 @@
       topic: zigbee2mqtt/slaapkamer_stan_remote/action
       payload: 'on'
   condition:
-    - condition: not
+    - condition: state
+      entity_id: input_boolean.stan_thuis
+      state: 'on'
+    - condition: or
       conditions:
-        - condition: state
-          entity_id: input_boolean.stan_thuis
-          state: 'on'
         - condition: time
-          after: '10:00:00'
-          before: '14:00:00'
+          before: '10:00:00'
+        - condition: time
+          after: '14:00:00'
   action:
     - service: light.turn_on
       target:

@@ -11,8 +11,8 @@ card:
   entity: $replace_with_input_entity$
   primary: $replace_with_input_name$
   icon: mdi:door
-  icon_color: '{{ ''red'' if is_state(entity, ''on'') else ''green'' }}'
+  icon_color: '{{ "red" if is_state(entity, "on") else "green" }}'
   fill_container: true
   layout: vertical
   tap_action:
-    action: none
+    action: more-info

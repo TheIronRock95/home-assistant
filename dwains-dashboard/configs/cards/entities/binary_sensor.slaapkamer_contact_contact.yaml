@@ -3,13 +3,11 @@ card:
   entity: $replace_with_input_entity$
   fill_container: true
   icon: mdi:door
-  icon_color: '{{ ''red'' if is_state(entity, ''on'') else ''green'' }}
-
-    '
+  icon_color: '{{ "red" if is_state(entity, "on") else "green" }}'
   layout: vertical
   primary: $replace_with_input_name$
   tap_action:
-    action: none
+    action: more-info
   type: custom:mushroom-template-card
 input_entity: binary_sensor.slaapkamer_contact_contact
 type: custom:dwains-blueprint-card
