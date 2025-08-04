@@ -1,0 +1,18 @@
+all_lights:
+  name: All Lights
+  entities:
+    - light.eetkamer_lampen_dimmer
+    - light.gang_plafondlamp
+    - light.garage_lampenschakelaar
+    - light.woonkamer_kast_bank
+    - light.woonkamer_kast_tv
+    - light.keuken_spot_links
+    - light.keuken_spot_midden
+    - light.keuken_spot_rechts
+    - light.slaapkamer_lamp_kledingkast
+    - light.slaapkamer_lize_led
+    - light.slaapkamer_quinn_lamp
+    - light.slaapkamer_stan_led
+    - light.terras_spots
+    - light.voorraadkast_lamp
+    - light.werkkamer_serverkast_led

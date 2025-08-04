@@ -69,6 +69,7 @@ input_select: !include input_select.yaml
 input_boolean: !include input_booleans.yaml
 light: !include light_groups.yaml
 sensor: !include sensors.yaml
+group: !include groups.yaml
 
 shell_command:
   run_gitbackup: bash scripts/backup2git.sh

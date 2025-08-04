@@ -1,0 +1,407 @@
+---
+button_card_templates: !include_dir_merge_named "../../custom_components/ui_lovelace_minimalist/__ui_minimalist__/ulm_templates/"
+
+title: "UI Lovelace Minimalist"
+theme: "minimalist-desktop"
+background: "var(--background-image)"
+# views: !include_dir_merge_list "views/"
+views:
+  - title: "Example View"
+    path: 0
+    icon: "mdi:flower"
+    cards:
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:layout-card
+            layout_type: masonry
+            layout: {}
+            cards:
+              - type: custom:mushroom-chips-card
+                chips:
+                  - type: menu
+                  - type: conditional
+                    conditions:
+                      - entity: group.all_lights
+                        state: 'on'
+                    chip:
+                      type: template
+                      icon: mdi:lightbulb
+                      content: >-
+                        {{ expand(states.group.all_lights) | selectattr( 'state', 'eq',
+                        'on') | list | count }}
+                      tap_action:
+                        action: more-info
+                      entity: group.all_lights
+                      icon_color: grey
+              #     - type: conditional
+              #       conditions:
+              #         - entity: group.all_windows
+              #           state: 'on'
+              #       chip:
+              #         type: template
+              #         icon_color: grey
+              #         icon: mdi:window-open
+              #         content: >-
+              #           {{ expand(states.group.all_windows) | selectattr( 'state', 'eq',
+              #           'on') | list | count }}
+              #         tap_action:
+              #           action: more-info
+              #         entity: group.all_windows
+              #     - type: conditional
+              #       conditions:
+              #         - entity: group.external_doors
+              #           state: 'on'
+              #       chip:
+              #         type: template
+              #         icon_color: grey
+              #         icon: mdi:door-open
+              #         content: >-
+              #           {{ expand(states.group.external_doors) | selectattr( 'state',
+              #           'eq', 'on') | list | count }}
+              #         tap_action:
+              #           action: more-info
+              #         entity: group.external_doors
+              #     - type: conditional
+              #       conditions:
+              #         - entity: group.water_leak
+              #           state: 'on'
+              #       chip:
+              #         type: template
+              #         icon_color: light-blue
+              #         icon: mdi:water-alert
+              #         tap_action:
+              #           action: more-info
+              #         entity: group.water_leak
+              #         card_mod:
+              #           style: |
+              #             ha-card {
+              #               animation: blink 1s linear infinite;
+              #             }
+              #             @keyframes blink {
+              #               50% {opacity: 0;}
+              #             }  
+              #     - type: conditional
+              #       conditions:
+              #         - entity: group.smoke_alarm
+              #           state: 'on'
+              #       chip:
+              #         type: template
+              #         icon_color: red
+              #         icon: mdi:fire-alert
+              #         tap_action:
+              #           action: more-info
+              #         entity: group.smoke_alarm
+              #         card_mod:
+              #           style: |
+              #             ha-card {
+              #               animation: blink 1s linear infinite;
+              #             }
+              #             @keyframes blink {
+              #               50% {opacity: 0;}
+              #             }  
+                card_mod:
+                  style: |
+                    :host {
+                      --ha-card-background: var(--card-background-color);
+                    }
+              - square: false
+                columns: 2
+                type: grid
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:mushroom-chips-card
+                        chips:
+                          - type: conditional
+                            conditions:
+                              - entity: person.wouter_damman
+                                state: home
+                            chip:
+                              type: entity
+                              entity: person.wouter_damman
+                              content_info: nam
+                              use_entity_picture: true
+                              card_mod:
+                                style: |
+                                  ha-card {
+                                      --chip-background: rgba(var(--rgb-state-person-home), 0.4);
+                                      margin-top: 5px;
+                                      margin-bottom: 10px;
+                                  } 
+                          - type: conditional
+                            conditions:
+                              - entity: person.ilse_beuker
+                                state: home
+                            chip:
+                              type: entity
+                              entity: person.ilse_beuker
+                              content_info: none
+                              use_entity_picture: true
+                              card_mod:
+                                style: |
+                                  ha-card {
+                                      --chip-background: rgba(var(--rgb-state-person-home), 0.4);
+                                      margin-top: 5px;
+                                      margin-bottom: 10px;
+                                  } 
+              #             - type: conditional
+              #               conditions:
+              #                 - entity: person.elijah
+              #                   state: home
+              #               chip:
+              #                 type: entity
+              #                 entity: person.elijah
+              #                 content_info: none
+              #                 use_entity_picture: true
+              #                 card_mod:
+              #                   style: |
+              #                     ha-card {
+              #                         --chip-background: rgba(var(--rgb-state-person-home), 0.4);
+              #                         margin-top: 5px;
+              #                         margin-bottom: 10px;
+              #                     } 
+              #             - type: conditional
+              #               conditions:
+              #                 - entity: person.michaela
+              #                   state: home
+              #               chip:
+              #                 type: entity
+              #                 entity: person.michaela
+              #                 content_info: none
+              #                 use_entity_picture: true
+              #                 card_mod:
+              #                   style: |
+              #                     ha-card {
+              #                         --chip-background: rgba(var(--rgb-state-person-home), 0.4);
+              #                         margin-top: 5px;
+              #                         margin-bottom: 10px;
+              #                     } 
+                        alignment: start
+                        card_mod:
+                          style: |
+                            ha-card { 
+                              margin-left: 8px;
+                            }
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:mushroom-chips-card
+                        chips:
+                          - type: conditional
+                            conditions:
+                              - entity: person.wouter_damman
+                                state_not: home
+                            chip:
+                              type: entity
+                              entity: person.wouter_damman
+                              content_info: none
+                              use_entity_picture: true
+                              card_mod:
+                                style: |
+                                  ha-card {
+                                    {% if is_state('person.wouter_damman', 'not_home') %}
+                                      --chip-background: rgba(var(--rgb-state-person-not-home), 0.4);
+                                    {% elif is_state('person.wouter_damman', 'unknown') %}
+                                      --chip-background: rgba(var(--rgb-state-person-unknown), 0.4);
+                                    {% else %}
+                                      --chip-background: rgba(var(--rgb-state-person-zone), 0.4);
+                                    {% endif %} 
+                                      margin-top: 5px;
+                                      margin-bottom: 10px;
+                                  } 
+                          - type: conditional
+                            conditions:
+                              - entity: person.ilse_beuker
+                                state_not: home
+                            chip:
+                              type: entity
+                              entity: person.ilse_beuker
+                              content_info: none
+                              use_entity_picture: true
+                              card_mod:
+                                style: |
+                                  ha-card {
+                                    {% if is_state('person.ilse_beuker', 'not_home') %}
+                                      --chip-background: rgba(var(--rgb-state-person-not-home), 0.4);
+                                    {% elif is_state('person.ilse_beuker', 'unknown') %}
+                                      --chip-background: rgba(var(--rgb-state-person-unknown), 0.4);
+                                    {% else %}
+                                      --chip-background: rgba(var(--rgb-state-person-zone), 0.4);
+                                    {% endif %} 
+                                      margin-top: 5px;
+                                      margin-bottom: 10px;
+                                  } 
+              #             - type: conditional
+              #               conditions:
+              #                 - entity: person.elijah
+              #                   state_not: home
+              #               chip:
+              #                 type: entity
+              #                 entity: person.elijah
+              #                 content_info: none
+              #                 use_entity_picture: true
+              #                 card_mod:
+              #                   style: |
+              #                     ha-card {
+              #                       {% if is_state('person.elijah', 'not_home') %}
+              #                         --chip-background: rgba(var(--rgb-state-person-not-home), 0.4);
+              #                       {% elif is_state('person.elijah', 'unknown') %}
+              #                         --chip-background: rgba(var(--rgb-state-person-unknown), 0.4);
+              #                       {% else %}
+              #                         --chip-background: rgba(var(--rgb-state-person-zone), 0.4);
+              #                       {% endif %} 
+              #                         margin-top: 5px;
+              #                         margin-bottom: 10px;
+              #                     } 
+              #             - type: conditional
+              #               conditions:
+              #                 - entity: person.michaela
+              #                   state_not: home
+              #               chip:
+              #                 type: entity
+              #                 entity: person.michaela
+              #                 content_info: none
+              #                 use_entity_picture: true
+              #                 card_mod:
+              #                   style: |
+              #                     ha-card {
+              #                       {% if is_state('person.michaela', 'not_home') %}
+              #                         --chip-background: rgba(var(--rgb-state-person-not-home), 0.4);
+              #                       {% elif is_state('person.michaela', 'unknown') %}
+              #                         --chip-background: rgba(var(--rgb-state-person-unknown), 0.4);
+              #                       {% else %}
+              #                         --chip-background: rgba(var(--rgb-state-person-zone), 0.4);
+              #                       {% endif %} 
+              #                         margin-top: 5px;
+              #                         margin-bottom: 10px;
+              #                     } 
+                        alignment: end
+                        card_mod:
+                          style: |
+                            ha-card { 
+                              margin-right: 8px;
+                            }
+              - type: custom:mushroom-title-card
+                title: |-
+                  {% set time = now().hour %}
+                  {% if time >= 18 %}
+                    Goedenavond, {{user}}!
+                  {% elif time >= 12 %}
+                    Goedemiddag, {{user}}!
+                  {% elif time >= 5 %}
+                    Goedemorgen, {{user}}!
+                  {% else %}
+                    Hallo, {{user}}!
+                  {% endif %}
+                subtitle: ''
+              - type: custom:simple-weather-card
+                entity: weather.forecast_home
+                name: in Valthermond
+                card_mod:
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                      background: none;
+                    }
+              - type: horizontal-stack
+                cards:
+                  - type: custom:mushroom-template-card
+                    primary: ''
+                    secondary: House
+                    icon: mdi:home
+                    layout: vertical
+                    icon_color: blue
+                    tap_action:
+                      action: navigate
+                      navigation_path: house
+                    card_mod:
+                      style: |
+                        ha-card { 
+                          background: var(--card-background-color);
+                          width: 66px;
+                          border-radius: 30px;
+                          margin-left: auto;
+                          margin-right: auto;
+                          margin-bottom: 2px;
+                        }
+                  - type: custom:mushroom-template-card
+                    primary: ''
+                    secondary: Lights
+                    icon: mdi:lightbulb
+                    icon_color: amber
+                    layout: vertical
+                    tap_action:
+                      action: navigate
+                      navigation_path: lights
+                    card_mod:
+                      style: |
+                        ha-card { 
+                          background: var(--card-background-color);
+                          width: 66px;
+                          border-radius: 30px;
+                          margin-left: auto;
+                          margin-right: auto;
+                          margin-bottom: 2px;
+                        }
+                  - type: custom:mushroom-template-card
+                    primary: ''
+                    secondary: Secure
+                    icon: mdi:shield
+                    icon_color: green
+                    layout: vertical
+                    tap_action:
+                      action: navigate
+                      navigation_path: security
+                    card_mod:
+                      style: |
+                        ha-card { 
+                          background: var(--card-background-color);
+                          width: 66px;
+                          border-radius: 30px;
+                          margin-left: auto;
+                          margin-right: auto;
+                          margin-bottom: 2px;
+                        }
+                  - type: custom:mushroom-template-card
+                    primary: ''
+                    secondary: Media
+                    icon: mdi:speaker
+                    layout: vertical
+                    icon_color: red
+                    tap_action:
+                      action: navigate
+                      navigation_path: media
+                    card_mod:
+                      style: |
+                        ha-card { 
+                          background: var(--card-background-color);
+                          width: 66px;
+                          border-radius: 30px;
+                          margin-left: auto;
+                          margin-right: auto;
+                          margin-bottom: 2px;
+                        }
+                  - type: custom:mushroom-template-card
+                    primary: ''
+                    secondary: Net
+                    icon: mdi:lan
+                    layout: vertical
+                    icon_color: cyan
+                    tap_action:
+                      action: navigate
+                      navigation_path: media
+                    card_mod:
+                      style: |
+                        ha-card { 
+                          background: var(--card-background-color);
+                          width: 66px;
+                          border-radius: 30px;
+                          margin-left: auto;
+                          margin-right: auto;
+                          margin-bottom: 2px;
+                        }
+        card_mod:
+          style: |
+            ha-card {
+              padding: 2px;
+              background: rgba(var(--rgb-primary-text-color), 0.01);
+            }
