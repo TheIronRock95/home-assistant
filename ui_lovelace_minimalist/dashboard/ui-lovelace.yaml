@@ -27,78 +27,11 @@ views:
                       type: template
                       icon: mdi:lightbulb
                       content: >-
-                        {{ expand(states.group.all_lights) | selectattr( 'state', 'eq',
-                        'on') | list | count }}
+                        {{ expand(states.group.all_lights) | selectattr( 'state', 'eq', 'on') | list | count }}
                       tap_action:
                         action: more-info
                       entity: group.all_lights
                       icon_color: grey
-              #     - type: conditional
-              #       conditions:
-              #         - entity: group.all_windows
-              #           state: 'on'
-              #       chip:
-              #         type: template
-              #         icon_color: grey
-              #         icon: mdi:window-open
-              #         content: >-
-              #           {{ expand(states.group.all_windows) | selectattr( 'state', 'eq',
-              #           'on') | list | count }}
-              #         tap_action:
-              #           action: more-info
-              #         entity: group.all_windows
-              #     - type: conditional
-              #       conditions:
-              #         - entity: group.external_doors
-              #           state: 'on'
-              #       chip:
-              #         type: template
-              #         icon_color: grey
-              #         icon: mdi:door-open
-              #         content: >-
-              #           {{ expand(states.group.external_doors) | selectattr( 'state',
-              #           'eq', 'on') | list | count }}
-              #         tap_action:
-              #           action: more-info
-              #         entity: group.external_doors
-              #     - type: conditional
-              #       conditions:
-              #         - entity: group.water_leak
-              #           state: 'on'
-              #       chip:
-              #         type: template
-              #         icon_color: light-blue
-              #         icon: mdi:water-alert
-              #         tap_action:
-              #           action: more-info
-              #         entity: group.water_leak
-              #         card_mod:
-              #           style: |
-              #             ha-card {
-              #               animation: blink 1s linear infinite;
-              #             }
-              #             @keyframes blink {
-              #               50% {opacity: 0;}
-              #             }  
-              #     - type: conditional
-              #       conditions:
-              #         - entity: group.smoke_alarm
-              #           state: 'on'
-              #       chip:
-              #         type: template
-              #         icon_color: red
-              #         icon: mdi:fire-alert
-              #         tap_action:
-              #           action: more-info
-              #         entity: group.smoke_alarm
-              #         card_mod:
-              #           style: |
-              #             ha-card {
-              #               animation: blink 1s linear infinite;
-              #             }
-              #             @keyframes blink {
-              #               50% {opacity: 0;}
-              #             }  
                 card_mod:
                   style: |
                     :host {
@@ -124,9 +57,9 @@ views:
                               card_mod:
                                 style: |
                                   ha-card {
-                                      --chip-background: rgba(var(--rgb-state-person-home), 0.4);
-                                      margin-top: 5px;
-                                      margin-bottom: 10px;
+                                    --chip-background: rgba(var(--rgb-state-person-home), 0.4);
+                                    margin-top: 5px;
+                                    margin-bottom: 10px;
                                   } 
                           - type: conditional
                             conditions:
@@ -140,42 +73,10 @@ views:
                               card_mod:
                                 style: |
                                   ha-card {
-                                      --chip-background: rgba(var(--rgb-state-person-home), 0.4);
-                                      margin-top: 5px;
-                                      margin-bottom: 10px;
+                                    --chip-background: rgba(var(--rgb-state-person-home), 0.4);
+                                    margin-top: 5px;
+                                    margin-bottom: 10px;
                                   } 
-              #             - type: conditional
-              #               conditions:
-              #                 - entity: person.elijah
-              #                   state: home
-              #               chip:
-              #                 type: entity
-              #                 entity: person.elijah
-              #                 content_info: none
-              #                 use_entity_picture: true
-              #                 card_mod:
-              #                   style: |
-              #                     ha-card {
-              #                         --chip-background: rgba(var(--rgb-state-person-home), 0.4);
-              #                         margin-top: 5px;
-              #                         margin-bottom: 10px;
-              #                     } 
-              #             - type: conditional
-              #               conditions:
-              #                 - entity: person.michaela
-              #                   state: home
-              #               chip:
-              #                 type: entity
-              #                 entity: person.michaela
-              #                 content_info: none
-              #                 use_entity_picture: true
-              #                 card_mod:
-              #                   style: |
-              #                     ha-card {
-              #                         --chip-background: rgba(var(--rgb-state-person-home), 0.4);
-              #                         margin-top: 5px;
-              #                         margin-bottom: 10px;
-              #                     } 
                         alignment: start
                         card_mod:
                           style: |
@@ -205,8 +106,8 @@ views:
                                     {% else %}
                                       --chip-background: rgba(var(--rgb-state-person-zone), 0.4);
                                     {% endif %} 
-                                      margin-top: 5px;
-                                      margin-bottom: 10px;
+                                    margin-top: 5px;
+                                    margin-bottom: 10px;
                                   } 
                           - type: conditional
                             conditions:
@@ -227,53 +128,9 @@ views:
                                     {% else %}
                                       --chip-background: rgba(var(--rgb-state-person-zone), 0.4);
                                     {% endif %} 
-                                      margin-top: 5px;
-                                      margin-bottom: 10px;
+                                    margin-top: 5px;
+                                    margin-bottom: 10px;
                                   } 
-              #             - type: conditional
-              #               conditions:
-              #                 - entity: person.elijah
-              #                   state_not: home
-              #               chip:
-              #                 type: entity
-              #                 entity: person.elijah
-              #                 content_info: none
-              #                 use_entity_picture: true
-              #                 card_mod:
-              #                   style: |
-              #                     ha-card {
-              #                       {% if is_state('person.elijah', 'not_home') %}
-              #                         --chip-background: rgba(var(--rgb-state-person-not-home), 0.4);
-              #                       {% elif is_state('person.elijah', 'unknown') %}
-              #                         --chip-background: rgba(var(--rgb-state-person-unknown), 0.4);
-              #                       {% else %}
-              #                         --chip-background: rgba(var(--rgb-state-person-zone), 0.4);
-              #                       {% endif %} 
-              #                         margin-top: 5px;
-              #                         margin-bottom: 10px;
-              #                     } 
-              #             - type: conditional
-              #               conditions:
-              #                 - entity: person.michaela
-              #                   state_not: home
-              #               chip:
-              #                 type: entity
-              #                 entity: person.michaela
-              #                 content_info: none
-              #                 use_entity_picture: true
-              #                 card_mod:
-              #                   style: |
-              #                     ha-card {
-              #                       {% if is_state('person.michaela', 'not_home') %}
-              #                         --chip-background: rgba(var(--rgb-state-person-not-home), 0.4);
-              #                       {% elif is_state('person.michaela', 'unknown') %}
-              #                         --chip-background: rgba(var(--rgb-state-person-unknown), 0.4);
-              #                       {% else %}
-              #                         --chip-background: rgba(var(--rgb-state-person-zone), 0.4);
-              #                       {% endif %} 
-              #                         margin-top: 5px;
-              #                         margin-bottom: 10px;
-              #                     } 
                         alignment: end
                         card_mod:
                           style: |
@@ -405,3 +262,225 @@ views:
               padding: 2px;
               background: rgba(var(--rgb-primary-text-color), 0.01);
             }
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: custom:mushroom-template-card
+            entity: group.master_bedroom  # kan je laten staan of aanpassen als je wilt
+            icon: mdi:sofa
+            icon_color: |
+              {% set excluded = [
+                'automation.ikea_remote_control_living_room_lights',
+                'remote.sony_xr_55a80k'
+              ] %}
+              {% set entities = area_entities('woonkamer') %}
+              {% set on_entities = entities
+                | reject('in', excluded)
+                | select('is_state', 'on')
+                | list %}
+              {% if on_entities | length > 0 %}
+                #03A9F4
+              {% else %}
+                grey
+              {% endif %}
+            primary: Woonkamer
+            secondary: >-
+              {{ states('sensor.woonkamer_klimaat_temperature') | round(0)
+              }}°C | {{ states('sensor.woonkamer_klimaat_humidity') |
+              round(0) }}%
+            layout: horizontal
+            tap_action:
+              action: navigate
+              navigation_path: /mobile-dashboard/woonkamer
+            double_tap_action:
+              action: navigate
+              navigation_path: /mobile-dashboard/woonkamer
+            hold_action:
+              action: toggle
+            badge_icon: >
+              {% if is_state_attr('climate.e3_vitodens_100_vct_0122_heating', 'hvac_action', 'heating') %}
+                mdi:radiator
+              {% elif is_state_attr('climate.e3_vitodens_100_vct_0122_heating', 'active_vicare_mode', 'standby') %}
+                mdi:power-standby
+              {% else %}
+                mdi:thermometer
+              {% endif %}
+            badge_color: >
+              {% if is_state_attr('climate.e3_vitodens_100_vct_0122_heating', 'hvac_action', 'heating') %}
+                red
+              {% elif is_state_attr('climate.e3_vitodens_100_vct_0122_heating', 'active_vicare_mode', 'standby') %}
+                grey
+              {% else %}
+                #6c6c75
+              {% endif %}
+            card_mod:
+              style:
+                mushroom-state-info$: |
+                  .primary {
+                    font-size: 16px !important;
+                    position: relative;
+                    top: -50px;
+                    left: -155px;
+                    overflow: visible !important;
+                    white-space: normal !important;
+                  }
+                  .secondary {
+                    position: relative;
+                    overflow: visible !important;
+                    top: -52px;
+                    left: -155px;
+                  }
+                mushroom-shape-icon$: |
+                  .shape {
+                    position: relative;
+                    left: -43px;
+                    top: 55px;
+                  }
+                .: |
+                  :host {
+                    --mush-icon-size: 146px;
+                    --secondary-text-color: 
+                      {% if is_state_attr('climate.e3_vitodens_100_vct_0122_heating', 'hvac_action', 'heating') %}
+                        red
+                      {% elif is_state_attr('climate.e3_vitodens_100_vct_0122_heating', 'active_vicare_mode', 'standby') %}
+                        grey
+                      {% else %}
+                        #6c6c75
+                      {% endif %}
+                  }
+                style: |
+                  mushroom-badge-icon {
+                    left: 69px;
+                    top: 25px;
+                  }
+          - type: custom:mushroom-template-card
+            primary: none
+            icon_color: disabled
+            icon: mdi:lightbulb
+            secondary: none
+            entity: light.woonkamer_kast_bank
+            tap_action:
+              action: fire-dom-event
+              browser_mod:
+                service: browser_mod.popup
+                data:
+                  title: Lampen Woonkamer
+                  content:
+                    type: vertical-stack
+                    cards:
+                      - type: custom:mushroom-light-card
+                        entity: light.woonkamer_kast_bank
+                        name: Woonkamer Kast Bank
+                        use_light_color: true
+                        show_brightness_control: true
+                        show_color_temp_control: false
+                        show_color_control: false
+                        collapsible_controls: true
+                        card_mod:
+                          style: |
+                            ha-card {
+                              --ha-card-border-width: 0;
+                            }
+                      - type: custom:mushroom-light-card
+                        entity: light.woonkamer_kast_tv
+                        name: Woonkamer Kast TV
+                        use_light_color: true
+                        show_brightness_control: true
+                        show_color_temp_control: false
+                        show_color_control: false
+                        collapsible_controls: true
+                        card_mod:
+                          style: |
+                            ha-card {
+                              --ha-card-border-width: 0;
+                            }
+                  card_mod:
+                    style: |
+                      ha-card {
+                        --ha-card-border-width: 0;
+                      }
+            hold_action:
+              action: toggle
+            double_tap_action:
+              action: more-info
+            card_mod:
+              style:
+                mushroom-shape-icon$: |
+                .: |
+                  ha-card {
+                    width: 66px;
+                    margin-left: 68%;
+                    top: -178px;
+                    background: none;
+                  }
+                  :host {
+                    --mush-icon-size: 38px;
+                  }
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: conditional
+                conditions:
+                  - entity: binary_sensor.keuken_bewegingssensor_occupancy
+                    state: 'on'
+                chip:
+                  type: entity
+                  entity: binary_sensor.keuken_bewegingssensor_occupancy
+                  icon: mdi:motion-sensor
+                  icon_color: blue
+                  content_info: none
+              - type: conditional
+                conditions:
+                  - entity: media_player.sony_xr_55a80k
+                    state: 'on'
+                chip:
+                  type: entity
+                  entity: media_player.sony_xr_55a80k
+                  icon: mdi:television
+                  icon_color: purple
+                  content_info: none
+            card_mod:
+              style:
+                .: |
+                  ha-card {
+                    width: 66px;
+                    margin-left: 76%;
+                    top: -186px;
+                    background: none;
+                    --chip-border-width: 0;
+                  }
+                  :host {
+                    --mush-icon-size: 20px;
+                    --mush-chip-spacing: -2.9px
+                  }
+          # - type: custom:mushroom-chips-card
+          #   chips:                  
+          #     - type: conditional
+          #       conditions:
+          #         - entity: media_player.sony_xr_55a80k
+          #           state: 'on'
+          #       chip:
+          #         type: entity
+          #         entity: media_player.sony_xr_55a80k
+          #         icon: mdi:television
+          #         icon_color: purple
+          #         content_info: none
+          #   card_mod:
+          #     style:
+          #       .: |
+          #         ha-card {
+          #           width: 66px;
+          #           margin-left: 76%;
+          #           top: -186px;
+          #           background: none;
+          #           --chip-border-width: 0;
+          #         }
+          #         :host {
+          #           --mush-icon-size: 20px;
+          #           --mush-chip-spacing: -2.9px
+          #         }
+        card_mod:
+          style: |
+            ha-card {
+              height: 178px !important;
+              width: 178px !important;
+            }      
+
