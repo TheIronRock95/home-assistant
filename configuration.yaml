@@ -7,6 +7,16 @@ frontend:
   # load custom themes from the themes directory
   themes: !include_dir_merge_named themes
 
+lovelace:
+  mode: yaml
+  dashboards:
+    home-dashboard:
+      mode: yaml
+      title: Home Dashboard
+      icon: mdi:flower
+      show_in_sidebar: true
+      filename: /config/test/ui-lovelace.yaml
+
 # Recorder integration settings for database logging and retention
 recorder:
   # Database connection URL, fetched from the environment variable MYSQL_URL
