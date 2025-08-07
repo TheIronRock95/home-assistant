@@ -1,0 +1,34 @@
+---
+button_card_templates: !include_dir_merge_named "../../custom_components/ui_lovelace_minimalist/__ui_minimalist__/ulm_templates/"
+
+title: Woonkamer
+theme: "minimalist-desktop"
+background: "var(--background-image)"
+views:
+  - title: "Home"
+    cards:
+    - type: custom:stack-in-card
+      cards:
+        - type: custom:layout-card
+          layout_type: masonry
+          layout: {}
+          cards:
+            - type: custom:mushroom-chips-card
+              chips:
+                - type: menu
+                - type: action
+                  tap_action:
+                    action: navigate
+                    navigation_path: /main-dashboard
+                  icon: mdi:home
+              card_mod:
+                style: |
+                  :host {
+                    --ha-card-background: var(--card-background-color);
+                  }
+      card_mod:
+        style: |
+          ha-card {
+            padding: 2px;
+            background: rgba(var(--rgb-primary-text-color), 0.01);
+          }

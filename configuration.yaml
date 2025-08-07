@@ -10,36 +10,46 @@ frontend:
     - /local/card-mod.js
 
 
-# lovelace:
-#   mode: yaml
-#   resources:
-#     - url: /local/mushroom.js?v=1.0.0
-#       type: module
-#     - url: /local/mini-graph-card-bundle.js?v=0.13.0
-#       type: module
-#     - url: /local/button-card.js?v=3.4.0
-#       type: module
-#     - url: /local/apexcharts-card.js?v=2.1.2
-#       type: module
-#     - url: /local/layout-card.js?v=2.2.0
-#       type: module
-#     - url: /local/vertical-stack-in-card.js?v=1.0.1
-#       type: module
-#     - url: /local/ultra-vehicle-card.js?v=1.2.0
-#       type: module
-#     - url: /local/simple-weather-card-bundle.js?v=0.8.5
-#       type: module
-#     - url: /local/stack-in-card.js?v=0.1.3
-#       type: module
+lovelace:
+  mode: yaml
+  resources:
+    - url: /hacsfiles/lovelace-mushroom/mushroom.js
+      type: module
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+      type: module
+    - url: /hacsfiles/button-card/button-card.js
+      type: module
+    - url: /hacsfiles/apexcharts-card/apexcharts-card.js
+      type: module
+    - url: /hacsfiles/lovelace-layout-card/layout-card.js
+      type: module
+    - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+      type: module
+    - url: /hacsfiles/Ultra-Vehicle-Card/ultra-vehicle-card.js
+      type: module
+    - url: /hacsfiles/simple-weather-card/simple-weather-card-bundle.js
+      type: module
+    - url: /hacsfiles/stack-in-card/stack-in-card.js
+      type: module
+    - url: /hacsfiles/decluttering-card/decluttering-card.js
+      type: module
+    - url: /browser_mod.js
+      type: module
 
-#   dashboards:
-#     home-dashboard:
-#       mode: yaml
-#       title: Home Dashboard
-#       icon: mdi:home
-#       show_in_sidebar: true
-#       filename: dashboard/main.yaml
+  dashboards:
+    main-dashboard:
+      mode: yaml
+      title: Hoofdmenu
+      icon: mdi:home
+      show_in_sidebar: true
+      filename: dashboard/main.yaml
 
+    woonkamer-dashboard:
+      mode: yaml
+      title: Woonkamer
+      icon: mdi:sofa
+      show_in_sidebar: false
+      filename: dashboard/woonkamer.yaml
 
 # Recorder integration settings for database logging and retention
 recorder:
