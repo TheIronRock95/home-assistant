@@ -11,7 +11,16 @@ views:
     path: 0
     icon: "mdi:flower"
     cards:
-      - type: custom:stack-in-card
+      # - type: custom:stack-in-card
+      #   cards:
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        layout:
+          grid-template-columns: repeat(0, 0fr)
+          grid-gap: 70px
+          mediaquery:
+            '(max-width: 600px)':
+              grid-template-columns: repeat(0, 0fr)
         cards:
           - type: custom:layout-card
             layout_type: masonry
@@ -267,12 +276,11 @@ views:
       - type: custom:layout-card
         layout_type: custom:grid-layout
         layout:
-          grid-template-columns: repeat(2, 1fr)
-          grid-gap: 12px
+          grid-template-columns: repeat(3, 0fr)
+          grid-gap: 1px
           mediaquery:
             '(max-width: 600px)':
-              grid-template-columns: repeat(2, 1fr)
-
+              grid-template-columns: repeat(2, 0fr)
         cards:
           - type: custom:decluttering-card
             template: room_card
@@ -280,18 +288,18 @@ views:
               - room_name: Woonkamer
               - room_icon: mdi:sofa
               - area_id: woonkamer
-              - temp_sensor: sensor.woonkamer_temperature
-              - humid_sensor: sensor.woonkamer_humidity
-              - nav_path: /dashboard-woonkamer
-              - excluded_entities:
-                  - light.woonkamer_kerstboom
-                  - switch.woonkamer_ventilator
+              # - excluded_entities:
+              #     - automation.ikea_remote_control_living_room_lights
+              #     - remote.sony_xr_55a80k
+              - temp_sensor: sensor.kamertemperatuur
+              - humid_sensor: sensor.woonkamer_klimaat_humidity
+              - nav_path: /woonkamer-dashboard
               - light_entities:
-                  - light.woonkamer_spots
-                  - light.woonkamer_lamp
-              - climate_entity: climate.woonkamer_thermostaat
-              - motion_sensor: binary_sensor.woonkamer_motion
-              - media_player: media_player.woonkamer_tv
+                  - light.woonkamer_kast_bank
+                  - light.woonkamer_kast_tv
+              - climate_entity: climate.e3_vitodens_100_vct_0122_heating
+              # - motion_sensor: binary_sensor.woonkamer_motion
+              # - media_player: media_player.woonkamer_tv
               - chips: |
                   - type: conditional
                     conditions:
@@ -303,16 +311,16 @@ views:
                       icon: mdi:motion-sensor
                       icon_color: blue
                       content_info: none
-                  - type: conditional
-                    conditions:
-                      - entity: media_player.woonkamer_tv
-                        state: "on"
-                    chip:
-                      type: entity
-                      entity: media_player.woonkamer_tv
-                      icon: mdi:television
-                      icon_color: purple
-                      content_info: none
+                  # - type: conditional
+                  #   conditions:
+                  #     - entity: media_player.woonkamer_tv
+                  #       state: "on"
+                  #   chip:
+                  #     type: entity
+                  #     entity: media_player.woonkamer_tv
+                  #     icon: mdi:television
+                  #     icon_color: purple
+                  #     content_info: none
             card_mod:
               style: |
                 ha-card {
@@ -408,3 +416,5 @@ views:
                   border-radius: 12px;
                   padding: 8px;
                 }
+
+            

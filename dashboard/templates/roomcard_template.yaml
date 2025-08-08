@@ -20,8 +20,11 @@ room_card:
         entity: "[[room_name]]"
         icon: "[[room_icon]]"
         icon_color: |
-          {% set excluded = [[excluded_entities]] | tojson | from_json %}
-          {% set entities = area_entities('[[area_id]]') %}
+          {% set excluded = [
+            'automation.ikea_remote_control_living_room_lights',
+            'remote.sony_xr_55a80k'
+          ] %}
+          {% set entities = area_entities('woonkamer') %}
           {% set on_entities = entities
             | reject('in', excluded)
             | select('is_state', 'on')

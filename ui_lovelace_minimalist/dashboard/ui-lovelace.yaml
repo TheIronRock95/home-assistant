@@ -265,7 +265,7 @@ views:
       - type: custom:vertical-stack-in-card
         cards:
           - type: custom:mushroom-template-card
-            entity: group.master_bedroom  # kan je laten staan of aanpassen als je wilt
+            entity: group.master_bedroom  
             icon: mdi:sofa
             icon_color: |
               {% set excluded = [
