@@ -101,22 +101,37 @@ room_card:
         icon_color: disabled
         icon: mdi:lightbulb
         secondary: none
-        entity: "[[light_entities.0]]"
+        entity: "[[light_entities[0].entity]]"
         tap_action:
           action: fire-dom-event
           browser_mod:
             service: browser_mod.popup
             data:
-              title: Lampen [[room_name]]
+              title: "Lampen [[room_name]]"
               content:
                 type: vertical-stack
-                cards:
-                  [[light_entities]]
+                cards: >
+                  {% set cards = [] %}
+                  {% for light in light_entities %}
+                    {% set _ = cards.append({
+                      'type': 'custom:mushroom-light-card',
+                      'entity': light.entity,
+                      'name': light.name,
+                      'use_light_color': true,
+                      'show_brightness_control': true,
+                      'show_color_temp_control': false,
+                      'show_color_control': false,
+                      'collapsible_controls': true,
+                      'card_mod': {'style': 'ha-card { --ha-card-border-width: 0; }'}
+                    }) %}
+                  {% endfor %}
+                  {{ cards | to_nice_yaml }}
               card_mod:
                 style: |
                   ha-card {
                     --ha-card-border-width: 0;
                   }
+
         hold_action:
           action: toggle
         double_tap_action:
